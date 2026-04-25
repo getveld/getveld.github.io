@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Veld — AI, with judgment.</title>
+  <meta name="description" content="Veld builds AI systems for the enterprise — designed to work in the real world, not just the demo room.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    /* ── Quiet Field palette ── */
+    :root {
+      --deep-field:  #23382F;
+      --moss:        #5F7768;
+      --soft-sage:   #AAB8AE;
+      --stone:       #D8D6CF;
+      --chalk:       #F5F3EE;
+      --graphite:    #232628;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: var(--chalk);
+      color: var(--graphite);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+    h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 500; line-height: 1.25; }
+    h3 { font-size: 1.125rem; font-weight: 500; line-height: 1.4; }
+    p  { font-size: 1rem; line-height: 1.75; }
+
+    /* ── Header ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      background: var(--chalk);
+      border-bottom: 1px solid var(--stone);
+    }
+    .site-header__inner {
+      display: flex; align-items: center; justify-content: space-between;
+      height: 64px; max-width: 1080px; margin: 0 auto; padding: 0 2rem;
+    }
+    .wordmark {
+      font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em;
+      color: var(--deep-field); text-decoration: none;
+    }
+    .site-nav { display: flex; gap: 2rem; align-items: center; }
+    .site-nav a {
+      font-size: 0.875rem; font-weight: 500; color: var(--graphite);
+      text-decoration: none; opacity: 0.75; transition: opacity 0.15s;
+    }
+    .site-nav a:hover { opacity: 1; }
+    .site-nav .nav-cta {
+      background: var(--deep-field); color: var(--chalk);
+      padding: 0.5rem 1.25rem; border-radius: 4px; opacity: 1;
+      font-size: 0.875rem; transition: background 0.15s;
+    }
+    .site-nav .nav-cta:hover { background: var(--moss); }
+
+    /* ── Hero ── */
+    .hero { background: var(--deep-field); padding: 7rem 2rem; }
+    .hero__inner { max-width: 1080px; margin: 0 auto; }
+    .hero__eyebrow {
+      font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--soft-sage); margin-bottom: 1.5rem;
+    }
+    .hero h1 { color: var(--chalk); max-width: 14ch; margin-bottom: 1.5rem; }
+    .hero__sub {
+      font-size: 1.125rem; color: var(--soft-sage);
+      max-width: 52ch; line-height: 1.7; margin-bottom: 2.5rem;
+    }
+    .hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+    .btn {
+      display: inline-block; font-size: 0.9375rem; font-weight: 500;
+      padding: 0.75rem 1.75rem; border-radius: 4px; text-decoration: none;
+      transition: opacity 0.15s, background 0.15s;
+    }
+    .btn--primary { background: var(--chalk); color: var(--deep-field); }
+    .btn--primary:hover { background: var(--stone); }
+    .btn--ghost { color: var(--soft-sage); border: 1px solid var(--moss); }
+    .btn--ghost:hover { border-color: var(--soft-sage); color: var(--chalk); }
+
+    /* ── Sections ── */
+    .section { padding: 5rem 2rem; }
+    .section--alt { background: #fff; }
+    .section__label {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--moss); margin-bottom: 0.875rem;
+    }
+    .section__heading { color: var(--deep-field); margin-bottom: 1.25rem; }
+    .divider { border: none; border-top: 1px solid var(--stone); }
+
+    /* ── About ── */
+    .about__grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; align-items: start; max-width: 1080px; margin: 0 auto;
+    }
+    @media (max-width: 680px) { .about__grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+    .about__copy p + p { margin-top: 1rem; }
+    .about__stats { display: flex; flex-direction: column; gap: 1.5rem; }
+    .stat { border-left: 2px solid var(--moss); padding-left: 1.25rem; }
+    .stat__number { font-size: 2rem; font-weight: 600; color: var(--deep-field); line-height: 1; }
+    .stat__label { font-size: 0.875rem; color: var(--moss); margin-top: 0.25rem; }
+
+    /* ── Products ── */
+    .products__inner { max-width: 1080px; margin: 0 auto; }
+    .product-card {
+      border: 1px solid var(--stone); border-radius: 8px;
+      padding: 2rem 2.25rem; background: var(--chalk); max-width: 560px;
+    }
+    .product-card__tag {
+      display: inline-block; font-size: 0.75rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--moss);
+      background: #e8eeea; padding: 0.25rem 0.625rem; border-radius: 3px; margin-bottom: 1rem;
+    }
+    .product-card h3 { color: var(--deep-field); font-size: 1.375rem; margin-bottom: 0.75rem; }
+    .product-card p { color: var(--graphite); opacity: 0.8; margin-bottom: 1.25rem; }
+    .product-card .link {
+      font-size: 0.875rem; font-weight: 500; color: var(--moss);
+      text-decoration: none; border-bottom: 1px solid var(--soft-sage); padding-bottom: 1px;
+    }
+
+    /* ── Consulting ── */
+    .consulting { background: var(--deep-field); }
+    .consulting__inner { max-width: 1080px; margin: 0 auto; }
+    .consulting .section__label { color: var(--soft-sage); }
+    .consulting .section__heading { color: var(--chalk); }
+    .consulting__grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    @media (max-width: 720px) { .consulting__grid { grid-template-columns: 1fr; } }
+    .offer-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px; padding: 1.5rem;
+    }
+    .offer-card__badge {
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--soft-sage); margin-bottom: 0.75rem;
+    }
+    .offer-card h3 { color: var(--chalk); font-size: 1rem; margin-bottom: 0.625rem; }
+    .offer-card p { font-size: 0.875rem; color: var(--soft-sage); line-height: 1.65; }
+    .consulting__cta { margin-top: 3rem; }
+    .consulting__cta p { color: var(--soft-sage); margin-bottom: 1rem; max-width: 48ch; }
+
+    /* ── Contact bar ── */
+    .contact-bar { background: var(--moss); padding: 1.5rem 2rem; text-align: center; }
+    .contact-bar p { color: var(--chalk); font-size: 0.9375rem; }
+    .contact-bar a { color: var(--chalk); font-weight: 500; }
+
+    /* ── Footer ── */
+    .site-footer { background: var(--graphite); color: var(--stone); padding: 3rem 2rem; }
+    .site-footer__inner {
+      max-width: 1080px; margin: 0 auto;
+      display: flex; justify-content: space-between;
+      align-items: flex-start; flex-wrap: wrap; gap: 2rem;
+    }
+    .footer-brand .wordmark { color: var(--soft-sage); font-size: 1rem; }
+    .footer-brand p { font-size: 0.8125rem; color: var(--soft-sage); opacity: 0.6; margin-top: 0.5rem; }
+    .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+    .footer-links a {
+      font-size: 0.8125rem; color: var(--stone); text-decoration: none;
+      opacity: 0.7; transition: opacity 0.15s;
+    }
+    .footer-links a:hover { opacity: 1; }
+    .footer-bottom {
+      max-width: 1080px; margin: 2rem auto 0;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+      font-size: 0.75rem; color: var(--stone); opacity: 0.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="site-header__inner">
+      <a href="/" class="wordmark">Veld</a>
+      <nav class="site-nav">
+        <a href="#consulting">Consulting</a>
+        <a href="#products">Products</a>
+        <a href="mailto:steven@getveld.ai" class="nav-cta">Get in touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero__inner">
+      <p class="hero__eyebrow">Human-First AI</p>
+      <h1>AI, with judgment.</h1>
+      <p class="hero__sub">Veld builds AI systems for the enterprise — designed to work in the real world, not just the demo room. We also build AI products for the people doing the work.</p>
+      <div class="hero__actions">
+        <a href="mailto:steven@getveld.ai" class="btn btn--primary">Talk to us</a>
+        <a href="#consulting" class="btn btn--ghost">See our consulting offer</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section class="section">
+    <div class="about__grid">
+      <div class="about__copy">
+        <p class="section__label">About Veld</p>
+        <h2 class="section__heading">Built by someone who's been the buyer.</h2>
+        <p>Most AI companies are built by engineers who've never had to get a system past a procurement team, a security review, or a change management committee. Veld is different.</p>
+        <p>Veld was founded by Steven Davis — a former CIO with 10+ years of executive technology leadership, including scaling a $1M startup to a $250M global enterprise operating in 35 countries. He's been on your side of the table. He knows what actually gets deployed — and what doesn't.</p>
+        <p>We build AI systems designed for how enterprise environments actually work: with security, reliability, and real-world integration as first-class requirements, not afterthoughts.</p>
+      </div>
+      <div class="about__stats">
+        <div class="stat">
+          <div class="stat__number">29</div>
+          <div class="stat__label">Years in enterprise IT and technology leadership</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">35</div>
+          <div class="stat__label">Countries — the scale at which we've built and run systems</div>
+        </div>
+        <div class="stat">
+          <div class="stat__number">10+</div>
+          <div class="stat__label">Years as CIO — we know what procurement is going to ask</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- Products -->
+  <section class="section section--alt" id="products">
+    <div class="products__inner">
+      <p class="section__label">Products</p>
+      <h2 class="section__heading" style="margin-bottom: 2rem;">AI for the people doing the work.</h2>
+      <div class="product-card">
+        <span class="product-card__tag">iOS — Coming Soon</span>
+        <h3>Fleck</h3>
+        <p>An AI-powered journal and reflection tool. Fleck helps you capture what's happening, understand what it means, and carry what matters forward. Built for the people who think by writing.</p>
+        <a href="mailto:steven@getveld.ai?subject=Fleck early access" class="link">Get notified when it launches →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consulting -->
+  <section class="section consulting" id="consulting">
+    <div class="consulting__inner">
+      <p class="section__label">Consulting</p>
+      <h2 class="section__heading">Enterprise AI that actually works.</h2>
+      <p style="color: var(--soft-sage); max-width: 56ch; margin-top: 0.5rem;">The gap between what AI demos in a pitch and what it delivers inside your organization — with your security requirements, your compliance posture, your integrations — is significant. Most vendors don't tell you that.</p>
+      <div class="consulting__grid">
+        <div class="offer-card">
+          <p class="offer-card__badge">Lead offer</p>
+          <h3>Pilot Implementation</h3>
+          <p>A scoped, working AI system deployed for your team in 30–60 days. You end with something real running in your environment — not a slide deck. Built with your security and integration requirements as first-class constraints.</p>
+        </div>
+        <div class="offer-card">
+          <p class="offer-card__badge">Follow-on</p>
+          <h3>Fractional AI Leadership</h3>
+          <p>Ongoing strategy and iteration support after implementation. We work with your leadership team monthly — advising on AI direction, evaluating new tools, and evolving what's been built.</p>
+        </div>
+        <div class="offer-card">
+          <p class="offer-card__badge">Discovery</p>
+          <h3>AI Strategy &amp; Roadmap</h3>
+          <p>Not sure where to start? A scoped discovery engagement — we learn your organization, map AI opportunities, and deliver a prioritized roadmap. The right starting point before committing to implementation.</p>
+        </div>
+      </div>
+      <div class="consulting__cta">
+        <p>Pilot engagements are available at reduced rates for organizations willing to serve as reference clients.</p>
+        <a href="mailto:steven@getveld.ai" class="btn btn--primary">Let's talk →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact bar -->
+  <div class="contact-bar">
+    <p>Questions? Reach us at <a href="mailto:steven@getveld.ai">steven@getveld.ai</a></p>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div class="footer-brand">
+        <a href="/" class="wordmark">Veld</a>
+        <p>West Jordan, UT &nbsp;·&nbsp; Founded 2026</p>
+      </div>
+      <div class="footer-links">
+        <a href="mailto:steven@getveld.ai">steven@getveld.ai</a>
+        <a href="https://www.linkedin.com/in/stevenjamesdavis/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="/terms.html">Terms of Service</a>
+      </div>
+    </div>
+    <div class="footer-bottom">&copy; 2026 Veld, LLC. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
