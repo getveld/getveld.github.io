@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Veld — AI, with judgment.</title>
-  <meta name="description" content="Veld builds AI systems for the enterprise — designed to work in the real world, not just the demo room.">
+  <title>Veld — Technology that works. AI that delivers.</title>
+  <meta name="description" content="Veld delivers enterprise AI solutions designed to work in the real world — with your security requirements, your integrations, and your team.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -42,9 +42,12 @@
       display: flex; align-items: center; justify-content: space-between;
       height: 64px; max-width: 1080px; margin: 0 auto; padding: 0 2rem;
     }
-    .wordmark {
-      font-size: 1.25rem; font-weight: 600; letter-spacing: -0.02em;
-      color: var(--deep-field); text-decoration: none;
+    .wordmark-link {
+      display: flex; flex-direction: column; align-items: flex-start; gap: 0px; text-decoration: none;
+    }
+    .wordmark-text {
+      font-size: 1.125rem; font-weight: 500; letter-spacing: 0.09em;
+      color: var(--deep-field);
     }
     .site-nav { display: flex; gap: 2rem; align-items: center; }
     .site-nav a {
@@ -66,7 +69,11 @@
       font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--soft-sage); margin-bottom: 1.5rem;
     }
-    .hero h1 { color: var(--chalk); max-width: 14ch; margin-bottom: 1.5rem; }
+    .hero h1 { color: var(--chalk); max-width: 20ch; margin-bottom: 1rem; }
+    .hero__tagline {
+      font-size: 1rem; color: var(--moss); font-style: italic;
+      margin-bottom: 1.75rem; letter-spacing: 0.01em;
+    }
     .hero__sub {
       font-size: 1.125rem; color: var(--soft-sage);
       max-width: 52ch; line-height: 1.7; margin-bottom: 2.5rem;
@@ -158,7 +165,14 @@
       display: flex; justify-content: space-between;
       align-items: flex-start; flex-wrap: wrap; gap: 2rem;
     }
-    .footer-brand .wordmark { color: var(--soft-sage); font-size: 1rem; }
+    .footer-brand-link {
+      display: flex; flex-direction: column; align-items: flex-start;
+      gap: 0; text-decoration: none; margin-bottom: 0.5rem;
+    }
+    .footer-wordmark {
+      font-size: 1rem; font-weight: 500; letter-spacing: 0.09em;
+      color: var(--soft-sage); margin-top: 3px;
+    }
     .footer-brand p { font-size: 0.8125rem; color: var(--soft-sage); opacity: 0.6; margin-top: 0.5rem; }
     .footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
     .footer-links a {
@@ -178,11 +192,17 @@
   <!-- Header -->
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="/" class="wordmark">Veld</a>
+      <a href="/" class="wordmark-link">
+        <svg width="20" height="17" viewBox="0 0 44 38" fill="none">
+          <path d="M15 37 Q13 25 21 14" stroke="#5F7768" stroke-width="2.5" stroke-linecap="round"/>
+          <path d="M27 37 Q29 23 23 4" stroke="#5F7768" stroke-width="2.5" stroke-linecap="round"/>
+        </svg>
+        <span class="wordmark-text">veld</span>
+      </a>
       <nav class="site-nav">
         <a href="#consulting">Consulting</a>
         <a href="#products">Products</a>
-        <a href="mailto:steven@getveld.ai" class="nav-cta">Get in touch</a>
+        <a href="mailto:info@getveld.ai" class="nav-cta">Get in touch</a>
       </nav>
     </div>
   </header>
@@ -190,11 +210,12 @@
   <!-- Hero -->
   <section class="hero">
     <div class="hero__inner">
-      <p class="hero__eyebrow">Human-First AI</p>
-      <h1>AI, with judgment.</h1>
+      <p class="hero__eyebrow">Enterprise AI Solutions</p>
+      <h1>Technology that works. AI that delivers.</h1>
+      <p class="hero__tagline">Wide open. Well-grounded.</p>
       <p class="hero__sub">Veld builds AI systems for the enterprise — designed to work in the real world, not just the demo room. We also build AI products for the people doing the work.</p>
       <div class="hero__actions">
-        <a href="mailto:steven@getveld.ai" class="btn btn--primary">Talk to us</a>
+        <a href="mailto:info@getveld.ai" class="btn btn--primary">Talk to us</a>
         <a href="#consulting" class="btn btn--ghost">See our consulting offer</a>
       </div>
     </div>
@@ -238,7 +259,7 @@
         <span class="product-card__tag">iOS — Coming Soon</span>
         <h3>Fleck</h3>
         <p>An AI-powered journal and reflection tool. Fleck helps you capture what's happening, understand what it means, and carry what matters forward. Built for the people who think by writing.</p>
-        <a href="mailto:steven@getveld.ai?subject=Fleck early access" class="link">Get notified when it launches →</a>
+        <a href="mailto:info@getveld.ai?subject=Fleck early access" class="link">Get notified when it launches &#8594;</a>
       </div>
     </div>
   </section>
@@ -268,26 +289,31 @@
       </div>
       <div class="consulting__cta">
         <p>Pilot engagements are available at reduced rates for organizations willing to serve as reference clients.</p>
-        <a href="mailto:steven@getveld.ai" class="btn btn--primary">Let's talk →</a>
+        <a href="mailto:info@getveld.ai" class="btn btn--primary">Let's talk &#8594;</a>
       </div>
     </div>
   </section>
 
   <!-- Contact bar -->
   <div class="contact-bar">
-    <p>Questions? Reach us at <a href="mailto:steven@getveld.ai">steven@getveld.ai</a></p>
+    <p>Questions? Reach us at <a href="mailto:info@getveld.ai">info@getveld.ai</a></p>
   </div>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div class="footer-brand">
-        <a href="/" class="wordmark">Veld</a>
-        <p>West Jordan, UT &nbsp;·&nbsp; Founded 2026</p>
+        <a href="/" class="footer-brand-link">
+          <svg width="22" height="19" viewBox="0 0 44 38" fill="none">
+            <path d="M15 37 Q13 25 21 14" stroke="#AAB8AE" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M27 37 Q29 23 23 4" stroke="#AAB8AE" stroke-width="2.5" stroke-linecap="round"/>
+          </svg>
+          <span class="footer-wordmark">veld</span>
+        </a>
+        <p>Founded 2026</p>
       </div>
       <div class="footer-links">
-        <a href="mailto:steven@getveld.ai">steven@getveld.ai</a>
-        <a href="https://www.linkedin.com/in/stevenjamesdavis/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:info@getveld.ai">info@getveld.ai</a>
         <a href="/privacy.html">Privacy Policy</a>
         <a href="/terms.html">Terms of Service</a>
       </div>
