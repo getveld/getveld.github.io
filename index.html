@@ -43,7 +43,7 @@
       height: 64px; max-width: 1080px; margin: 0 auto; padding: 0 2rem;
     }
     .wordmark-link {
-      display: flex; flex-direction: column; align-items: flex-start; gap: 0px; text-decoration: none;
+      display: flex; flex-direction: column; align-items: center; gap: 0px; text-decoration: none;
     }
     .wordmark-text {
       font-size: 1.125rem; font-weight: 500; letter-spacing: 0.09em;
@@ -63,8 +63,13 @@
     .site-nav .nav-cta:hover { background: var(--moss); }
 
     /* ── Hero ── */
-    .hero { background: var(--deep-field); padding: 7rem 2rem; }
-    .hero__inner { max-width: 1080px; margin: 0 auto; }
+    .hero { background: var(--deep-field); padding: 7rem 2rem; position: relative; overflow: hidden; }
+    .hero__grass {
+      position: absolute; right: 0; top: 0;
+      height: 100%; width: 55%;
+      pointer-events: none; opacity: 0.18;
+    }
+    .hero__inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
     .hero__eyebrow {
       font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.1em;
       text-transform: uppercase; color: var(--soft-sage); margin-bottom: 1.5rem;
@@ -113,21 +118,21 @@
 
     /* ── Products ── */
     .products__inner { max-width: 1080px; margin: 0 auto; }
+    .products__grid {
+      display: grid; grid-template-columns: 1fr 1fr 1fr;
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    @media (max-width: 720px) { .products__grid { grid-template-columns: 1fr; } }
     .product-card {
-      border: 1px solid var(--stone); border-radius: 8px;
-      padding: 2rem 2.25rem; background: var(--chalk); max-width: 560px;
+      background: var(--chalk); border: 1px solid var(--stone);
+      border-radius: 6px; padding: 1.5rem;
     }
     .product-card__tag {
-      display: inline-block; font-size: 0.75rem; font-weight: 500;
-      letter-spacing: 0.08em; text-transform: uppercase; color: var(--moss);
-      background: #e8eeea; padding: 0.25rem 0.625rem; border-radius: 3px; margin-bottom: 1rem;
+      font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--moss); margin-bottom: 0.75rem;
     }
-    .product-card h3 { color: var(--deep-field); font-size: 1.375rem; margin-bottom: 0.75rem; }
-    .product-card p { color: var(--graphite); opacity: 0.8; margin-bottom: 1.25rem; }
-    .product-card .link {
-      font-size: 0.875rem; font-weight: 500; color: var(--moss);
-      text-decoration: none; border-bottom: 1px solid var(--soft-sage); padding-bottom: 1px;
-    }
+    .product-card h3 { color: var(--deep-field); font-size: 1rem; margin-bottom: 0.625rem; }
+    .product-card p { font-size: 0.875rem; color: var(--graphite); opacity: 0.8; line-height: 1.65; }
 
     /* ── Consulting ── */
     .consulting { background: var(--deep-field); }
@@ -166,7 +171,7 @@
       align-items: flex-start; flex-wrap: wrap; gap: 2rem;
     }
     .footer-brand-link {
-      display: flex; flex-direction: column; align-items: flex-start;
+      display: flex; flex-direction: column; align-items: center;
       gap: 0; text-decoration: none; margin-bottom: 0.5rem;
     }
     .footer-wordmark {
@@ -192,16 +197,17 @@
   <!-- Header -->
   <header class="site-header">
     <div class="site-header__inner">
-      <a href="/" class="wordmark-link">
-        <svg width="20" height="17" viewBox="0 0 44 38" fill="none">
-          <path d="M15 37 Q13 25 21 14" stroke="#5F7768" stroke-width="2.5" stroke-linecap="round"/>
-          <path d="M27 37 Q29 23 23 4" stroke="#5F7768" stroke-width="2.5" stroke-linecap="round"/>
+      <a href="index.html" class="wordmark-link">
+        <svg width="32" height="22" viewBox="11 9 20 29" fill="none">
+          <path d="M15 37 Q13 26 21 20" stroke="#23382F" stroke-width="3" stroke-linecap="round"/>
+          <path d="M27 37 Q29 24 23 10" stroke="#23382F" stroke-width="3" stroke-linecap="round"/>
         </svg>
         <span class="wordmark-text">veld</span>
       </a>
       <nav class="site-nav">
-        <a href="#consulting">Consulting</a>
+        <a href="#about">About</a>
         <a href="#products">Products</a>
+        <a href="#consulting">Consulting</a>
         <a href="mailto:info@getveld.ai" class="nav-cta">Get in touch</a>
       </nav>
     </div>
@@ -209,32 +215,44 @@
 
   <!-- Hero -->
   <section class="hero">
+    <!-- Decorative grass texture -->
+    <svg class="hero__grass" viewBox="0 0 800 600" preserveAspectRatio="xMaxYMax meet" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#5F7768" stroke-linecap="round">
+      <!-- Varied blades: mix of Q (simple lean), C (S-curve), upright, dramatic lean -->
+      <path d="M62 600 Q57 478 72 382" stroke-width="3"/>
+      <path d="M122 600 Q155 455 84 342" stroke-width="3"/>
+      <path d="M208 600 C190 498 234 418 200 330" stroke-width="5"/>
+      <path d="M295 600 Q255 450 375 315" stroke-width="4"/>
+      <path d="M378 600 C360 488 415 400 368 288" stroke-width="7"/>
+      <path d="M464 600 Q456 452 482 262" stroke-width="6"/>
+      <path d="M554 600 C525 474 605 385 558 242" stroke-width="9"/>
+      <path d="M660 600 Q622 438 722 220" stroke-width="11"/>
+      <path d="M756 600 Q818 440 722 198" stroke-width="10"/>
+    </svg>
     <div class="hero__inner">
-      <p class="hero__eyebrow">Enterprise AI Solutions</p>
-      <h1>Technology that works. AI that delivers.</h1>
-      <p class="hero__tagline">Wide open. Well-grounded.</p>
-      <p class="hero__sub">Veld builds AI systems for the enterprise — designed to work in the real world, not just the demo room. We also build AI products for the people doing the work.</p>
+      <p class="hero__eyebrow">Founded 2026. Perspective 1997.</p>
+      <h1>We've been inside a revolution before.</h1>
+      <p class="hero__sub">Steven Davis started his career at Netscape in 1997, at the dawn of the internet. He spent three decades in enterprise IT learning what technology actually delivers &mdash; and what just demos well. This moment in AI feels exactly like that one. Veld is built with that perspective.</p>
       <div class="hero__actions">
-        <a href="mailto:info@getveld.ai" class="btn btn--primary">Talk to us</a>
-        <a href="#consulting" class="btn btn--ghost">See our consulting offer</a>
+        <a href="mailto:info@getveld.ai" class="btn btn--primary">Start the conversation &#8594;</a>
+        <a href="#products" class="btn btn--ghost">See our work</a>
       </div>
     </div>
   </section>
 
   <!-- About -->
-  <section class="section">
+  <section class="section" id="about">
     <div class="about__grid">
       <div class="about__copy">
         <p class="section__label">About Veld</p>
         <h2 class="section__heading">Built by someone who's been the buyer.</h2>
-        <p>Most AI companies are built by engineers who've never had to get a system past a procurement team, a security review, or a change management committee. Veld is different.</p>
-        <p>Veld was founded by Steven Davis — a former CIO with 10+ years of executive technology leadership, including scaling a $1M startup to a $250M global enterprise operating in 35 countries. He's been on your side of the table. He knows what actually gets deployed — and what doesn't.</p>
-        <p>We build AI systems designed for how enterprise environments actually work: with security, reliability, and real-world integration as first-class requirements, not afterthoughts.</p>
+        <p>Most AI companies are built by engineers who've never had to get a system past a procurement team, a security review, or a change management committee.</p>
+        <p>Veld was founded by Steven Davis — a CIO-turned-founder with over a decade as CIO. He's been on the buyer's side of the table. He knows what actually gets deployed — and what doesn't.</p>
+        <p>That means every system we build is designed for the reality of enterprise deployment — security, compliance, and integration aren't added later. They're the starting point.</p>
       </div>
       <div class="about__stats">
         <div class="stat">
-          <div class="stat__number">29</div>
-          <div class="stat__label">Years in enterprise IT and technology leadership</div>
+          <div class="stat__number">Three decades</div>
+          <div class="stat__label">in enterprise IT and technology leadership</div>
         </div>
         <div class="stat">
           <div class="stat__number">35</div>
@@ -254,12 +272,24 @@
   <section class="section section--alt" id="products">
     <div class="products__inner">
       <p class="section__label">Products</p>
-      <h2 class="section__heading" style="margin-bottom: 2rem;">AI for the people doing the work.</h2>
-      <div class="product-card">
-        <span class="product-card__tag">iOS — Coming Soon</span>
-        <h3>Fleck</h3>
-        <p>An AI-powered journal and reflection tool. Fleck helps you capture what's happening, understand what it means, and carry what matters forward. Built for the people who think by writing.</p>
-        <a href="mailto:info@getveld.ai?subject=Fleck early access" class="link">Get notified when it launches &#8594;</a>
+      <h2 class="section__heading" style="margin-bottom: 1rem;">Building AI products, not just advising on them.</h2>
+      <p style="color: var(--soft-sage); max-width: 56ch; margin-bottom: 2.5rem;">Every product we build is a live test of what AI actually delivers. Here's what we're working on.</p>
+      <div class="products__grid">
+        <div class="product-card">
+          <p class="product-card__tag">iOS — Coming Soon</p>
+          <h3>Fleck AI Journal</h3>
+          <p>An AI-powered personal journal. Speak your thoughts; Fleck writes your story.</p>
+        </div>
+        <div class="product-card">
+          <p class="product-card__tag">In Development</p>
+          <h3>Fleck Collective</h3>
+          <p>Turns individual contributions from conferences, corporate retreats, and live events into a collective narrative — for every attendee and the organizer. First deployment: June 2026.</p>
+        </div>
+        <div class="product-card">
+          <p class="product-card__tag">Early Stage &middot; Long-Term Research</p>
+          <h3>Virtual Boardroom</h3>
+          <p>What does it look like when AI agents aren't tools you prompt, but colleagues you work with — in real meetings, with real roles? We're building toward that.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -268,45 +298,45 @@
   <section class="section consulting" id="consulting">
     <div class="consulting__inner">
       <p class="section__label">Consulting</p>
-      <h2 class="section__heading">Enterprise AI that actually works.</h2>
-      <p style="color: var(--soft-sage); max-width: 56ch; margin-top: 0.5rem;">The gap between what AI demos in a pitch and what it delivers inside your organization — with your security requirements, your compliance posture, your integrations — is significant. Most vendors don't tell you that.</p>
+      <h2 class="section__heading">The CIO who's now the builder. That's your consultant.</h2>
+      <p style="color: var(--soft-sage); max-width: 56ch; margin-top: 0.5rem;">Steven spent over a decade as a CIO — approving or rejecting the exact systems vendors were pitching him. Now he builds them. That's a different kind of consulting.</p>
       <div class="consulting__grid">
         <div class="offer-card">
-          <p class="offer-card__badge">Lead offer</p>
+          <p class="offer-card__badge">Where most clients start</p>
           <h3>Pilot Implementation</h3>
           <p>A scoped, working AI system deployed for your team in 30–60 days. You end with something real running in your environment — not a slide deck. Built with your security and integration requirements as first-class constraints.</p>
         </div>
         <div class="offer-card">
-          <p class="offer-card__badge">Follow-on</p>
+          <p class="offer-card__badge">Ongoing support</p>
           <h3>Fractional AI Leadership</h3>
-          <p>Ongoing strategy and iteration support after implementation. We work with your leadership team monthly — advising on AI direction, evaluating new tools, and evolving what's been built.</p>
+          <p>Monthly strategy and iteration support after implementation. We work with your leadership team regularly — advising on AI direction, evaluating new tools, and evolving what's been built.</p>
         </div>
         <div class="offer-card">
-          <p class="offer-card__badge">Discovery</p>
+          <p class="offer-card__badge">Start here</p>
           <h3>AI Strategy &amp; Roadmap</h3>
           <p>Not sure where to start? A scoped discovery engagement — we learn your organization, map AI opportunities, and deliver a prioritized roadmap. The right starting point before committing to implementation.</p>
         </div>
       </div>
       <div class="consulting__cta">
-        <p>Pilot engagements are available at reduced rates for organizations willing to serve as reference clients.</p>
-        <a href="mailto:info@getveld.ai" class="btn btn--primary">Let's talk &#8594;</a>
+        <p>Currently accepting a small number of pilot clients at reduced rates — in exchange for serving as a reference.</p>
+        <a href="mailto:info@getveld.ai" class="btn btn--primary">Start the conversation &#8594;</a>
       </div>
     </div>
   </section>
 
   <!-- Contact bar -->
   <div class="contact-bar">
-    <p>Questions? Reach us at <a href="mailto:info@getveld.ai">info@getveld.ai</a></p>
+    <p>Questions? Reach us at <a href="mailto:info@getveld.ai">info@getveld.ai</a> &mdash; our AI agent manages this inbox, with Steven in the loop on everything that matters.</p>
   </div>
 
   <!-- Footer -->
   <footer class="site-footer">
     <div class="site-footer__inner">
       <div class="footer-brand">
-        <a href="/" class="footer-brand-link">
-          <svg width="22" height="19" viewBox="0 0 44 38" fill="none">
-            <path d="M15 37 Q13 25 21 14" stroke="#AAB8AE" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M27 37 Q29 23 23 4" stroke="#AAB8AE" stroke-width="2.5" stroke-linecap="round"/>
+        <a href="index.html" class="footer-brand-link">
+          <svg width="22" height="15" viewBox="11 9 20 29" fill="none">
+            <path d="M15 37 Q13 26 21 20" stroke="#AAB8AE" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M27 37 Q29 24 23 10" stroke="#AAB8AE" stroke-width="2.5" stroke-linecap="round"/>
           </svg>
           <span class="footer-wordmark">veld</span>
         </a>
