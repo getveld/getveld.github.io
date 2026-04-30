@@ -1,0 +1,286 @@
+/* =========================================================
+   Veld — Foundations
+   Lifted from getveld.github.io (index.html, privacy.html, terms.html)
+   Palette name: "Quiet Field"
+   ========================================================= */
+
+/* --- Webfont -----------------------------------------------------------
+   Locked 2026-04-29: **Inter Tight** is Veld's primary sans.
+   - Open-source (Google Fonts / SIL OFL). No license, no swap risk.
+   - Akzidenz-Grotesk lineage. Calm, authoritative, modern grotesk.
+   - Used for everything: body, headings, eyebrows, stat numbers, wordmark.
+
+   Serif pairing was rejected at the system level — Veld is sans-only.
+   Source Serif 4 is loaded but reserved for app-level editorial moments
+   only (long-form journal entries in Fleck, etc.). Do not use serif on
+   the marketing site or in decks.
+----------------------------------------------------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=Source+Serif+4:wght@400;500;600&display=swap');
+
+:root {
+  /* ─────────── Quiet Field palette (canonical from site CSS) ─────────── */
+  --veld-deep-field:  #23382F;   /* primary surface, hero, ink on light */
+  --veld-moss:        #5F7768;   /* secondary, italic taglines, accents */
+  --veld-soft-sage:   #AAB8AE;   /* tertiary text on dark, sage labels  */
+  --veld-stone:       #D8D6CF;   /* hairline borders, dividers          */
+  --veld-chalk:       #F5F3EE;   /* page background (warm off-white)    */
+  --veld-graphite:    #232628;   /* body copy ink, footer surface       */
+  --veld-paper:       #FFFFFF;   /* alt section background              */
+
+  /* Subtle tint used in the privacy/terms placeholder notice. */
+  --veld-sage-tint:   #E8EEEA;
+
+  /* Translucent overlays that appear on the dark hero / consulting band. */
+  --veld-overlay-card-fill:    rgba(255, 255, 255, 0.06);
+  --veld-overlay-card-border:  rgba(255, 255, 255, 0.10);
+  --veld-overlay-rule:         rgba(255, 255, 255, 0.08);
+
+  /* ─────────── Semantic surface / ink mapping ─────────── */
+  --bg:           var(--veld-chalk);
+  --bg-alt:       var(--veld-paper);
+  --bg-inverse:   var(--veld-deep-field);
+  --bg-footer:    var(--veld-graphite);
+
+  --fg:           var(--veld-graphite);     /* default body */
+  --fg-1:         var(--veld-deep-field);   /* headings on light */
+  --fg-2:         var(--veld-moss);         /* labels, eyebrows */
+  --fg-3:         var(--veld-soft-sage);    /* tertiary, on-dark muted */
+  --fg-on-dark:   var(--veld-chalk);
+
+  --rule:         var(--veld-stone);
+  --rule-on-dark: var(--veld-overlay-rule);
+
+  /* ─────────── Semantic states ───────────
+     Tuned to sit alongside the Quiet Field palette: standard hue
+     associations (green / amber / red / blue / grey) at ~70% the
+     saturation of web-default, with chroma pulled toward the
+     warm-earth axis so they don't shout.
+
+     Each state has three shades:
+       --state-{name}-bg      surface fill (notice, toast, badge)
+       --state-{name}-border  hairline / focus ring
+       --state-{name}-fg      text + icon (and stronger fills)
+
+     `-on-dark` variants are paired for use on --bg-inverse
+     (deep-field). Same hue, raised lightness for AA contrast.        */
+
+  /* Success — moss-leaning green, NOT pure spring-green */
+  --state-success-bg:        #E6EEE6;
+  --state-success-border:    #9FBFA1;
+  --state-success-fg:        #2E6B3E;
+  --state-success-bg-on-dark:     rgba(159, 191, 161, 0.14);
+  --state-success-border-on-dark: rgba(159, 191, 161, 0.40);
+  --state-success-fg-on-dark:     #B7D6BA;
+
+  /* Warning — dusty amber, leans ochre to harmonize with stone/chalk */
+  --state-warning-bg:        #F6ECD4;
+  --state-warning-border:    #D9B870;
+  --state-warning-fg:        #7A5611;
+  --state-warning-bg-on-dark:     rgba(217, 184, 112, 0.14);
+  --state-warning-border-on-dark: rgba(217, 184, 112, 0.45);
+  --state-warning-fg-on-dark:     #E8C97A;
+
+  /* Error / Danger — clay terracotta, not fire-engine red */
+  --state-error-bg:          #F4E2DC;
+  --state-error-border:      #C68A78;
+  --state-error-fg:          #8C2E1B;
+  --state-error-bg-on-dark:       rgba(198, 138, 120, 0.14);
+  --state-error-border-on-dark:   rgba(198, 138, 120, 0.45);
+  --state-error-fg-on-dark:       #E0A493;
+
+  /* Info — slate blue, low-chroma so it doesn't fight moss */
+  --state-info-bg:           #E0E7EC;
+  --state-info-border:       #8FA4B3;
+  --state-info-fg:           #2C4A5F;
+  --state-info-bg-on-dark:        rgba(143, 164, 179, 0.14);
+  --state-info-border-on-dark:    rgba(143, 164, 179, 0.45);
+  --state-info-fg-on-dark:        #B6C7D2;
+
+  /* Neutral — disabled / muted. Pulls from stone + soft-sage. */
+  --state-neutral-bg:        #ECEAE3;
+  --state-neutral-border:    #B8B5AB;
+  --state-neutral-fg:        #6E6B62;
+  --state-neutral-bg-on-dark:     rgba(216, 214, 207, 0.10);
+  --state-neutral-border-on-dark: rgba(216, 214, 207, 0.30);
+  --state-neutral-fg-on-dark:     #B0AFA6;
+
+  /* ─────────── Type ───────────
+     --font-sans   — primary, used everywhere. Inter Tight, open-source.
+     --font-serif  — reserved for app-level editorial only (e.g. journal entries).
+                     DO NOT use in marketing site, decks, or system UI.
+     --font-mono   — code, metadata, technical labels.                              */
+  --font-sans:  'Inter Tight', system-ui, -apple-system, BlinkMacSystemFont,
+                'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Source Serif 4', Georgia, 'Times New Roman', serif;
+  --font-mono:  ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+                'Liberation Mono', 'Courier New', monospace;
+
+  /* Type scale (clamps mirror the site for fluid behavior) */
+  --fz-display:   clamp(2.5rem, 6vw, 4.5rem);   /* hero h1 */
+  --fz-h1:        clamp(2rem, 4.5vw, 3rem);
+  --fz-h2:        clamp(1.5rem, 3vw, 2rem);
+  --fz-h3:        1.125rem;
+  --fz-body:      1rem;
+  --fz-body-lg:   1.125rem;
+  --fz-small:     0.9375rem;
+  --fz-meta:      0.875rem;
+  --fz-eyebrow:   0.8125rem;   /* uppercase, tracked */
+  --fz-label:     0.75rem;     /* uppercase, tracked, denser */
+  --fz-tag:       0.7rem;      /* card tag (PRODUCTS, OFFERINGS) */
+
+  --lh-tight:     1.1;
+  --lh-snug:      1.25;
+  --lh-normal:    1.4;
+  --lh-prose:     1.7;          /* default body line-height */
+  --lh-prose-lg:  1.75;
+
+  --ls-display:   -0.02em;
+  --ls-eyebrow:   0.10em;       /* "FOUNDED 2026. PERSPECTIVE 1997." */
+  --ls-label:     0.12em;
+  --ls-wordmark:  0.09em;       /* the "veld" wordmark spacing */
+
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+
+  /* ─────────── Spacing scale (4-pt soft) ─────────── */
+  --space-0:      0;
+  --space-1:      0.25rem;   /*  4 */
+  --space-2:      0.5rem;    /*  8 */
+  --space-3:      0.75rem;   /* 12 */
+  --space-4:      1rem;      /* 16 */
+  --space-5:      1.25rem;   /* 20 */
+  --space-6:      1.5rem;    /* 24 */
+  --space-8:      2rem;      /* 32 */
+  --space-10:     2.5rem;    /* 40 */
+  --space-12:     3rem;      /* 48 */
+  --space-16:     4rem;      /* 64 */
+  --space-20:     5rem;      /* 80 */
+  --space-28:     7rem;      /* 112 — hero vertical pad */
+
+  /* ─────────── Radii ─────────── */
+  --radius-xs:    4px;        /* buttons, nav CTA */
+  --radius-sm:    6px;        /* cards, notice */
+  --radius-md:    8px;
+  --radius-lg:    12px;
+  --radius-pill:  999px;
+
+  /* ─────────── Borders ─────────── */
+  --hairline:        1px solid var(--rule);
+  --hairline-dark:   1px solid var(--rule-on-dark);
+  --accent-rule:     2px solid var(--veld-moss);   /* stat left-rule */
+
+  /* ─────────── Elevation ─────────── */
+  /* Veld is a low-shadow brand. Cards use hairlines, not drop shadows.
+     These tokens exist for moments where elevation is unavoidable
+     (menus, popovers) — keep them whisper-quiet. */
+  --shadow-0:  none;
+  --shadow-1:  0 1px 2px rgba(35, 56, 47, 0.06);
+  --shadow-2:  0 4px 16px rgba(35, 56, 47, 0.08);
+  --shadow-3:  0 12px 40px rgba(35, 56, 47, 0.12);
+
+  /* ─────────── Layout ─────────── */
+  --container-max: 1080px;
+  --gutter:        2rem;
+  --header-h:      64px;
+
+  /* ─────────── Motion ─────────── */
+  --t-fast:   120ms;
+  --t-base:   150ms;       /* the canonical site transition */
+  --t-slow:   240ms;
+  --ease:     ease;        /* the site uses bare `ease` — keep it honest */
+}
+
+/* =========================================================
+   Element defaults
+   ========================================================= */
+html { font-size: 16px; }
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fz-body);
+  line-height: var(--lh-prose);
+  color: var(--fg);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 {
+  font-size: var(--fz-display);
+  font-weight: var(--fw-semibold);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--ls-display);
+  color: var(--fg-1);
+}
+h2 {
+  font-size: var(--fz-h2);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+h3 {
+  font-size: var(--fz-h3);
+  font-weight: var(--fw-medium);
+  line-height: var(--lh-normal);
+  color: var(--fg-1);
+}
+p {
+  font-size: var(--fz-body);
+  line-height: var(--lh-prose-lg);
+}
+
+small, .meta { font-size: var(--fz-meta); color: var(--fg-2); }
+
+/* =========================================================
+   Utility classes that map to common Veld patterns
+   ========================================================= */
+
+/* Eyebrow — the small uppercase line that prefaces every section.
+   "FOUNDED 2026. PERSPECTIVE 1997." / "ABOUT VELD" / "PRODUCTS" */
+.veld-eyebrow {
+  font-size: var(--fz-eyebrow);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-eyebrow);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+/* Label — slightly smaller / denser than eyebrow, used for section labels
+   and footer page-meta lines. */
+.veld-label {
+  font-size: var(--fz-label);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-label);
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+/* Card tag — the tiny pill above each product / offer card. */
+.veld-tag {
+  font-size: var(--fz-tag);
+  font-weight: var(--fw-semibold);
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--fg-2);
+}
+
+/* Wordmark — the literal "veld" lockup. */
+.veld-wordmark {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wordmark);
+  color: var(--fg-1);
+}
+
+/* Italic moss tagline — Steven's tagline pattern. */
+.veld-tagline {
+  font-style: italic;
+  color: var(--veld-moss);
+  letter-spacing: 0.01em;
+}
+
+/* Stat block — left-rule + big number + small moss label. */
+.veld-stat       { border-left: var(--accent-rule); padding-left: 1.25rem; }
+.veld-stat__num  { font-size: 2rem; font-weight: var(--fw-semibold); color: var(--fg-1); line-height: 1; }
+.veld-stat__lbl  { font-size: var(--fz-meta); color: var(--veld-moss); margin-top: 0.25rem; }

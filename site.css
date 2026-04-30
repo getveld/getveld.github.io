@@ -1,0 +1,183 @@
+/* =========================================================
+   Veld website kit — full styles
+   Lifted directly from getveld/getveld.github.io@main/index.html,
+   then rewired to read from --veld-* tokens in colors_and_type.css.
+   ========================================================= */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--font-sans);
+  background: var(--veld-chalk);
+  color: var(--veld-graphite);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1 { font-size: clamp(2.5rem, 6vw, 4.5rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 500; line-height: 1.25; }
+h3 { font-size: 1.125rem; font-weight: 500; line-height: 1.4; }
+p  { font-size: 1rem; line-height: 1.75; }
+
+/* ── Header ── */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--veld-chalk);
+  border-bottom: 1px solid var(--veld-stone);
+}
+.site-header__inner {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 64px; max-width: 1080px; margin: 0 auto; padding: 0 2rem;
+}
+.wordmark-link {
+  display: flex; flex-direction: column; align-items: center; gap: 0;
+  text-decoration: none;
+}
+.wordmark-text {
+  font-size: 1.125rem; font-weight: 500; letter-spacing: 0.09em;
+  color: var(--veld-deep-field);
+}
+.site-nav { display: flex; gap: 2rem; align-items: center; }
+.site-nav a {
+  font-size: 0.875rem; font-weight: 500; color: var(--veld-graphite);
+  text-decoration: none; opacity: 0.75; transition: opacity 150ms ease;
+}
+.site-nav a:hover { opacity: 1; }
+.site-nav .nav-cta {
+  background: var(--veld-deep-field); color: var(--veld-chalk);
+  padding: 0.5rem 1.25rem; border-radius: 4px; opacity: 1;
+  font-size: 0.875rem; transition: background 150ms ease;
+}
+.site-nav .nav-cta:hover { background: var(--veld-moss); }
+
+/* ── Hero ── */
+.hero { background: var(--veld-deep-field); padding: 7rem 2rem; position: relative; overflow: hidden; }
+.hero__grass {
+  position: absolute; right: 0; top: 0;
+  height: 100%; width: 55%;
+  pointer-events: none; opacity: 0.18;
+}
+.hero__inner { max-width: 1080px; margin: 0 auto; position: relative; z-index: 1; }
+.hero__eyebrow {
+  font-size: 0.8125rem; font-weight: 500; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--veld-soft-sage); margin-bottom: 1.5rem;
+}
+.hero h1 { color: var(--veld-chalk); max-width: 20ch; margin-bottom: 1rem; }
+.hero__tagline {
+  font-size: 1.125rem; color: var(--veld-moss); font-style: italic;
+  margin-bottom: 1.75rem; letter-spacing: 0.01em;
+}
+.hero__sub {
+  font-size: 1.125rem; color: var(--veld-soft-sage);
+  max-width: 52ch; line-height: 1.7; margin-bottom: 2.5rem;
+}
+.hero__actions { display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+/* ── Buttons ── */
+.btn {
+  display: inline-block; font-size: 0.9375rem; font-weight: 500;
+  padding: 0.75rem 1.75rem; border-radius: 4px; text-decoration: none;
+  transition: opacity 150ms ease, background 150ms ease, color 150ms ease, border-color 150ms ease;
+  border: 0; cursor: pointer; font-family: var(--font-sans);
+}
+.btn--primary       { background: var(--veld-chalk); color: var(--veld-deep-field); }
+.btn--primary:hover { background: var(--veld-stone); }
+.btn--ghost         { color: var(--veld-soft-sage); border: 1px solid var(--veld-moss); background: transparent; }
+.btn--ghost:hover   { border-color: var(--veld-soft-sage); color: var(--veld-chalk); }
+
+/* ── Sections ── */
+.section { padding: 5rem 2rem; }
+.section--alt { background: var(--veld-paper); }
+.section__label {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--veld-moss); margin-bottom: 0.875rem;
+}
+.section__heading { color: var(--veld-deep-field); margin-bottom: 1.25rem; }
+.divider { border: none; border-top: 1px solid var(--veld-stone); }
+
+/* ── About ── */
+.about__grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 4rem; align-items: start; max-width: 1080px; margin: 0 auto;
+}
+@media (max-width: 680px) { .about__grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+.about__copy p + p { margin-top: 1rem; }
+.about__stats { display: flex; flex-direction: column; gap: 1.5rem; }
+.stat { border-left: 2px solid var(--veld-moss); padding-left: 1.25rem; }
+.stat__number { font-size: 2rem; font-weight: 600; color: var(--veld-deep-field); line-height: 1; }
+.stat__label  { font-size: 0.875rem; color: var(--veld-moss); margin-top: 0.25rem; }
+
+/* ── Products ── */
+.products__inner { max-width: 1080px; margin: 0 auto; }
+.products__grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+@media (max-width: 720px) { .products__grid { grid-template-columns: 1fr; } }
+.product-card {
+  background: var(--veld-chalk); border: 1px solid var(--veld-stone);
+  border-radius: 6px; padding: 1.5rem;
+}
+.product-card__tag {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--veld-moss); margin-bottom: 0.75rem;
+}
+.product-card h3 { color: var(--veld-deep-field); font-size: 1rem; margin-bottom: 0.625rem; }
+.product-card p  { font-size: 0.875rem; color: var(--veld-graphite); opacity: 0.8; line-height: 1.65; }
+
+/* ── Consulting ── */
+.consulting { background: var(--veld-deep-field); }
+.consulting__inner { max-width: 1080px; margin: 0 auto; }
+.consulting .section__label { color: var(--veld-soft-sage); }
+.consulting .section__heading { color: var(--veld-chalk); }
+.consulting__grid {
+  display: grid; grid-template-columns: 1fr 1fr 1fr;
+  gap: 1.5rem; margin-top: 2.5rem;
+}
+@media (max-width: 720px) { .consulting__grid { grid-template-columns: 1fr; } }
+.offer-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.10);
+  border-radius: 6px; padding: 1.5rem;
+}
+.offer-card__badge {
+  font-size: 0.7rem; font-weight: 600; letter-spacing: 0.10em;
+  text-transform: uppercase; color: var(--veld-soft-sage); margin-bottom: 0.75rem;
+}
+.offer-card h3 { color: var(--veld-chalk); font-size: 1rem; margin-bottom: 0.625rem; }
+.offer-card p  { font-size: 0.875rem; color: var(--veld-soft-sage); line-height: 1.65; }
+.consulting__cta { margin-top: 3rem; }
+.consulting__cta p { color: var(--veld-soft-sage); margin-bottom: 1rem; max-width: 48ch; }
+
+/* ── Contact bar ── */
+.contact-bar { background: var(--veld-moss); padding: 1.5rem 2rem; text-align: center; }
+.contact-bar p { color: var(--veld-chalk); font-size: 0.9375rem; }
+.contact-bar a { color: var(--veld-chalk); font-weight: 500; }
+
+/* ── Footer ── */
+.site-footer { background: var(--veld-graphite); color: var(--veld-stone); padding: 3rem 2rem; }
+.site-footer__inner {
+  max-width: 1080px; margin: 0 auto;
+  display: flex; justify-content: space-between;
+  align-items: flex-start; flex-wrap: wrap; gap: 2rem;
+}
+.footer-brand-link {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 0; text-decoration: none; margin-bottom: 0.5rem;
+}
+.footer-wordmark {
+  font-size: 1rem; font-weight: 500; letter-spacing: 0.09em;
+  color: var(--veld-soft-sage); margin-top: 3px;
+}
+.footer-brand p { font-size: 0.8125rem; color: var(--veld-soft-sage); opacity: 0.6; margin-top: 0.5rem; }
+.footer-links { display: flex; gap: 1.5rem; flex-wrap: wrap; align-items: center; }
+.footer-links a {
+  font-size: 0.8125rem; color: var(--veld-stone); text-decoration: none;
+  opacity: 0.7; transition: opacity 150ms ease;
+}
+.footer-links a:hover { opacity: 1; }
+.footer-bottom {
+  max-width: 1080px; margin: 2rem auto 0;
+  padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.08);
+  font-size: 0.75rem; color: var(--veld-stone); opacity: 0.5;
+}

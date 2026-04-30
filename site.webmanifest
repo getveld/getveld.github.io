@@ -1,0 +1,14 @@
+{
+  "name": "Veld",
+  "short_name": "Veld",
+  "description": "Enterprise AI from a CIO-turned-builder.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F3EE",
+  "theme_color": "#23382F",
+  "icons": [
+    { "src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+    { "src": "assets/icons/icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
