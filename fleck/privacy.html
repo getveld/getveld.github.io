@@ -17,7 +17,15 @@
         --accent: #d4b06a;
         --border: #2a2a33;
       }
-      * { box-sizing: border-box; }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+      }
+
       body {
         margin: 0;
         font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -25,11 +33,13 @@
         color: var(--text);
         line-height: 1.65;
       }
+
       .wrap {
         max-width: 900px;
         margin: 0 auto;
         padding: 48px 20px 80px;
       }
+
       .eyebrow {
         color: var(--accent);
         text-transform: uppercase;
@@ -37,14 +47,18 @@
         font-size: 12px;
         margin-bottom: 14px;
       }
+
       h1 {
         font-size: clamp(2rem, 5vw, 3.5rem);
         line-height: 1.08;
         margin: 0 0 12px;
       }
-      .lede, .muted {
+
+      .lede,
+      .muted {
         color: var(--muted);
       }
+
       .panel {
         margin-top: 28px;
         background: var(--panel);
@@ -52,17 +66,55 @@
         border-radius: 20px;
         padding: 26px;
       }
+
       h2 {
         margin-top: 0;
         font-size: 1.15rem;
       }
+
+      h3 {
+        margin: 22px 0 8px;
+        font-size: 1rem;
+      }
+
       a {
         color: var(--accent);
         text-decoration: none;
       }
-      a:hover { text-decoration: underline; }
+
+      a:hover {
+        text-decoration: underline;
+      }
+
       ul {
         padding-left: 20px;
+      }
+
+      li + li {
+        margin-top: 6px;
+      }
+
+      .updated {
+        margin-top: 6px;
+        font-size: 0.95rem;
+      }
+
+      .footer-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px 18px;
+        margin-top: 18px;
+      }
+
+      @media (max-width: 640px) {
+        .wrap {
+          padding: 32px 16px 64px;
+        }
+
+        .panel {
+          border-radius: 16px;
+          padding: 20px;
+        }
       }
     </style>
   </head>
@@ -70,54 +122,218 @@
     <main class="wrap">
       <div class="eyebrow">Veld privacy</div>
       <h1>Privacy Policy for Fleck: AI Journal</h1>
-      <p class="lede">Effective date: May 15, 2026</p>
-      <p class="muted">Fleck is a voice-first journaling app. This page explains what information Fleck may process, how it is used, and the choices available to users.</p>
+      <p class="lede">Effective date: May 30, 2026</p>
+      <p class="muted">
+        Fleck is a voice-first journaling app designed to help you capture short moments,
+        transcribe them, and generate daily reflections or sketches from your own journal entries.
+        This Privacy Policy explains what information Fleck processes, how that information is used,
+        when information may leave your device, and the choices available to you.
+      </p>
 
       <section class="panel">
-        <h2>Information Fleck may process</h2>
+        <h2>1. Information Fleck may process</h2>
+        <p>
+          Depending on how you use the app, Fleck may process the following types of information:
+        </p>
         <ul>
-          <li>voice journal recordings created in the app</li>
-          <li>transcript text generated from recordings</li>
-          <li>journal-related text or context used to generate reflections or sketches</li>
-          <li>subscription and entitlement status related to Apple billing and RevenueCat</li>
-          <li>support communications if a user contacts support</li>
+          <li>voice journal recordings you create in the app;</li>
+          <li>transcript text generated from your recordings;</li>
+          <li>journal-related text, context, and generated reflections or sketches, including recent journal context used to create AI-generated summaries or sketches;</li>
+          <li>subscription and entitlement information, such as subscription status, restore status, product identifiers, and related purchase information handled through Apple and RevenueCat;</li>
+          <li>paywall and subscription interaction data, such as paywall impressions or entitlement checks used to operate subscriptions; and</li>
+          <li>support communications, if you contact us for help.</li>
         </ul>
+        <p>
+          Your journal entries may contain sensitive personal information depending on what you choose to record.
+          Fleck processes this content only to provide the app’s journaling, transcription, reflection, subscription,
+          and support features.
+        </p>
       </section>
 
       <section class="panel">
-        <h2>How Fleck uses information</h2>
+        <h2>2. How Fleck uses information</h2>
+        <p>Fleck uses information to:</p>
         <ul>
-          <li>to let users record and revisit journal entries</li>
-          <li>to transcribe audio when transcription features are used</li>
-          <li>to generate reflections or sketches when those features are used</li>
-          <li>to manage subscriptions, restores, and entitlement status</li>
-          <li>to provide support if a user contacts us about a problem</li>
+          <li>let you record, save, and revisit journal entries;</li>
+          <li>transcribe audio recordings when transcription features are used;</li>
+          <li>generate AI reflections, daily sketches, or related journaling output when those features are used;</li>
+          <li>manage subscriptions, restores, entitlement status, and access to paid features;</li>
+          <li>troubleshoot issues and provide support if you contact us; and</li>
+          <li>maintain and improve the reliability of the app.</li>
         </ul>
+        <p>Fleck does not sell your journal content.</p>
       </section>
 
       <section class="panel">
-        <h2>Third-party services</h2>
+        <h2>3. Local-first storage</h2>
+        <p>
+          Fleck is designed as a local-first journaling app. Audio recordings, transcripts,
+          generated sketches, and related journal metadata may be stored locally on your device.
+          This means that much of your journal experience is kept on the device you use to run Fleck.
+        </p>
+        <p>
+          However, some features require sending data to third-party services, as described below.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>4. When data leaves your device</h2>
+
+        <h3>Transcription</h3>
+        <p>
+          When you use transcription features, your audio recording may be sent to Deepgram so that
+          Deepgram can generate a text transcript.
+        </p>
+
+        <h3>AI reflections and sketches</h3>
+        <p>
+          When you use AI reflection or sketch features, transcript text and relevant recent journal context
+          may be sent to Google Gemini so that Gemini can generate the requested reflection, sketch, or related output.
+          This may include text from the current journal entry and limited recent context needed to provide the feature.
+        </p>
+
+        <h3>Subscriptions</h3>
+        <p>
+          When you purchase, restore, or manage a subscription, Apple and RevenueCat may process subscription,
+          purchase, restore, entitlement, product identifier, and paywall-related information in order to provide
+          billing and subscription access.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>5. Third-party services</h2>
+        <p>Fleck currently uses the following third-party services:</p>
         <ul>
-          <li>Deepgram may process recorded audio for transcription</li>
-          <li>Google Gemini may process transcript text and related context for reflection or sketch generation</li>
-          <li>RevenueCat and Apple may process subscription, purchase, and restore information for billing and entitlement management</li>
+          <li><a href="https://deepgram.com/privacy" rel="noopener noreferrer">Deepgram</a> for audio transcription;</li>
+          <li><a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google Gemini</a> for AI-generated reflections and sketches;</li>
+          <li><a href="https://www.revenuecat.com/privacy" rel="noopener noreferrer">RevenueCat</a> for subscription and entitlement management; and</li>
+          <li><a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple</a> for App Store billing, purchases, refunds, and subscription management.</li>
         </ul>
+        <p>
+          These providers process information according to their own terms and privacy policies.
+          Fleck does not control every aspect of how third-party providers process data after it is sent to them.
+        </p>
+        <p>We do not intentionally use your journal content to train our own AI models.</p>
       </section>
 
       <section class="panel">
-        <h2>Data storage and privacy posture</h2>
-        <p>Fleck is designed as a local-first journaling app. Some journal-related data may be stored on the user’s device. When transcription or AI reflection features are used, related content may be sent to the third-party services described above in order to provide those features.</p>
+        <h2>6. Tracking and advertising</h2>
+        <p>
+          Fleck does not use third-party advertising, IDFA-based ad tracking, or App Tracking Transparency
+          advertising flows based on the current app implementation.
+        </p>
+        <p>
+          Fleck may process limited product, subscription, entitlement, or paywall interaction data through
+          services such as RevenueCat to operate subscriptions and paid features. This data is not used by Fleck
+          for third-party advertising.
+        </p>
       </section>
 
       <section class="panel">
-        <h2>Tracking and advertising</h2>
-        <p>Fleck does not use ad tracking, IDFA, or ATT-based advertising flows based on the current app implementation.</p>
+        <h2>7. Data retention and deletion</h2>
+        <p>
+          Journal data stored locally on your device may remain on your device unless you delete it in the app,
+          delete the app, or otherwise remove the app’s local data from your device.
+        </p>
+        <p>
+          Where Fleck provides in-app deletion features, deleting an entry removes that entry from the app’s local
+          storage on your device.
+        </p>
+        <p>
+          Data already processed by third-party services, such as transcription, AI generation, billing, or entitlement
+          providers, may be retained by those providers according to their own policies and legal obligations.
+        </p>
+        <p>
+          If you contact support, we may retain your support communications for as long as reasonably necessary to respond,
+          troubleshoot, maintain records, or comply with legal obligations. You can contact us at
+          <a href="mailto:support@getveld.ai">support@getveld.ai</a> with privacy-related questions or deletion requests
+          related to support communications.
+        </p>
       </section>
 
       <section class="panel">
-        <h2>Contact</h2>
-        <p>If you have questions about this Privacy Policy or need support, contact <a href="mailto:support@getveld.ai">support@getveld.ai</a>.</p>
-        <p><a href="/fleck/support.html">Go to Fleck Support</a></p>
+        <h2>8. Subscriptions and billing</h2>
+        <p>
+          Fleck subscriptions are handled through Apple’s App Store billing system. Apple may process payment,
+          purchase, refund, subscription, and account information according to Apple’s own terms and privacy policy.
+          Fleck does not directly receive your full payment card details.
+        </p>
+        <p>
+          RevenueCat helps Fleck determine whether your subscription is active and whether paid features should be available.
+          RevenueCat may process subscription status, product identifiers, entitlement status, restore events, and related
+          subscription data.
+        </p>
+        <p>You can manage or cancel App Store subscriptions through your Apple account settings.</p>
+      </section>
+
+      <section class="panel">
+        <h2>9. Children’s privacy</h2>
+        <p>
+          Fleck is not intended for children under 13. We do not knowingly collect personal information from children under 13.
+          If you believe a child has provided personal information through Fleck, please contact us at
+          <a href="mailto:support@getveld.ai">support@getveld.ai</a>.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>10. Security</h2>
+        <p>
+          We use reasonable administrative, technical, and organizational safeguards designed to protect information processed
+          by Fleck. However, no app, device, network, or service can be guaranteed to be completely secure. You should use care
+          when recording sensitive information and should protect access to your device.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>11. AI-generated content disclaimer</h2>
+        <p>
+          Fleck’s AI-generated reflections and sketches are intended for personal journaling and reflection. They are not medical,
+          mental health, legal, financial, or professional advice. Fleck is not a crisis, emergency, therapy, or healthcare service.
+        </p>
+        <p>
+          If you are in danger, in crisis, or need urgent help, contact local emergency services, a crisis hotline, or a qualified professional.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>12. International users</h2>
+        <p>
+          The third-party services used by Fleck may process information in the United States or other countries where they or their
+          service providers operate. By using Fleck, you understand that information may be processed in countries that may have privacy
+          laws different from those in your location.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>13. Your choices</h2>
+        <p>You can choose not to use features that send data to third-party services. For example:</p>
+        <ul>
+          <li>if you do not use transcription, your audio does not need to be sent to Deepgram for transcription;</li>
+          <li>if you do not use AI reflection or sketch features, your journal text does not need to be sent to Google Gemini for those features;</li>
+          <li>you can manage subscriptions through your Apple account settings; and</li>
+          <li>you can contact <a href="mailto:support@getveld.ai">support@getveld.ai</a> with privacy questions or support-related data requests.</li>
+        </ul>
+        <p>Some features may not work without the third-party processing required to provide them.</p>
+      </section>
+
+      <section class="panel">
+        <h2>14. Changes to this Privacy Policy</h2>
+        <p>
+          We may update this Privacy Policy from time to time. If we make material changes, we will update the effective date above
+          and may provide additional notice where appropriate.
+        </p>
+      </section>
+
+      <section class="panel">
+        <h2>15. Contact</h2>
+        <p>
+          If you have questions about this Privacy Policy, need support, or want to make a privacy-related request, contact
+          <a href="mailto:support@getveld.ai">support@getveld.ai</a>.
+        </p>
+        <div class="footer-links">
+          <a href="/fleck/support.html">Go to Fleck Support</a>
+          <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener noreferrer">Apple Standard EULA</a>
+        </div>
       </section>
     </main>
   </body>
