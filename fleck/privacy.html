@@ -94,11 +94,6 @@
         margin-top: 6px;
       }
 
-      .updated {
-        margin-top: 6px;
-        font-size: 0.95rem;
-      }
-
       .footer-links {
         display: flex;
         flex-wrap: wrap;
@@ -122,7 +117,7 @@
     <main class="wrap">
       <div class="eyebrow">Veld privacy</div>
       <h1>Privacy Policy for Fleck: AI Journal</h1>
-      <p class="lede">Effective date: May 30, 2026</p>
+      <p class="lede">Effective date: June 22, 2026</p>
       <p class="muted">
         Fleck is a voice-first journaling app designed to help you capture short moments,
         transcribe them, and generate daily reflections or sketches from your own journal entries.
@@ -138,15 +133,16 @@
         <ul>
           <li>voice journal recordings you create in the app;</li>
           <li>transcript text generated from your recordings;</li>
-          <li>journal-related text, context, and generated reflections or sketches, including recent journal context used to create AI-generated summaries or sketches;</li>
-          <li>subscription and entitlement information, such as subscription status, restore status, product identifiers, and related purchase information handled through Apple and RevenueCat;</li>
+          <li>typed journal entries, edits, and other journal-related text you create in the app;</li>
+          <li>journal context and generated reflections or sketches, including recent journal context used to create AI-generated summaries or sketches;</li>
+          <li>subscription and entitlement information, such as subscription status, restore status, product identifiers, and related purchase information handled through Apple, Google Play, and RevenueCat;</li>
           <li>paywall and subscription interaction data, such as paywall impressions or entitlement checks used to operate subscriptions; and</li>
           <li>support communications, if you contact us for help.</li>
         </ul>
         <p>
-          Your journal entries may contain sensitive personal information depending on what you choose to record.
+          Your journal entries may contain sensitive personal information depending on what you choose to record or write.
           Fleck processes this content only to provide the app’s journaling, transcription, reflection, subscription,
-          and support features.
+          export, and support features.
         </p>
       </section>
 
@@ -154,8 +150,8 @@
         <h2>2. How Fleck uses information</h2>
         <p>Fleck uses information to:</p>
         <ul>
-          <li>let you record, save, and revisit journal entries;</li>
-          <li>transcribe audio recordings when transcription features are used;</li>
+          <li>let you record, write, save, edit, export, and revisit journal entries;</li>
+          <li>transcribe audio recordings when transcription runs;</li>
           <li>generate AI reflections, daily sketches, or related journaling output when those features are used;</li>
           <li>manage subscriptions, restores, entitlement status, and access to paid features;</li>
           <li>troubleshoot issues and provide support if you contact us; and</li>
@@ -168,7 +164,7 @@
         <h2>3. Local-first storage</h2>
         <p>
           Fleck is designed as a local-first journaling app. Audio recordings, transcripts,
-          generated sketches, and related journal metadata may be stored locally on your device.
+          generated sketches, typed entries, edits, and related journal metadata may be stored locally on your device.
           This means that much of your journal experience is kept on the device you use to run Fleck.
         </p>
         <p>
@@ -181,22 +177,34 @@
 
         <h3>Transcription</h3>
         <p>
-          When you use transcription features, your audio recording may be sent to Deepgram so that
+          When you record a voice fleck and transcription runs, your audio recording may be sent to Deepgram so that
           Deepgram can generate a text transcript.
         </p>
 
         <h3>AI reflections and sketches</h3>
         <p>
-          When you use AI reflection or sketch features, transcript text and relevant recent journal context
+          When you use AI reflection or sketch features, transcript text, typed journal text, edits, and relevant recent journal context
           may be sent to Google Gemini so that Gemini can generate the requested reflection, sketch, or related output.
           This may include text from the current journal entry and limited recent context needed to provide the feature.
+        </p>
+        <p>
+          If automatic daily sketch generation is enabled, Fleck may send completed transcripts and limited recent journal context
+          to Google Gemini when the app checks for missing or stale daily sketches. You can turn automatic daily sketch generation
+          off in Fleck settings and generate sketches manually instead.
         </p>
 
         <h3>Subscriptions</h3>
         <p>
-          When you purchase, restore, or manage a subscription, Apple and RevenueCat may process subscription,
+          When you purchase, restore, or manage a subscription, Apple, Google Play, and RevenueCat may process subscription,
           purchase, restore, entitlement, product identifier, and paywall-related information in order to provide
           billing and subscription access.
+        </p>
+
+        <h3>Journal export</h3>
+        <p>
+          If you export your journal, Fleck creates a Markdown file on your device and opens the native share sheet.
+          Original audio recordings are not included in the export. The privacy of exported files depends on where you choose
+          to save or share them.
         </p>
       </section>
 
@@ -206,8 +214,9 @@
         <ul>
           <li><a href="https://deepgram.com/privacy" rel="noopener noreferrer">Deepgram</a> for audio transcription;</li>
           <li><a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google Gemini</a> for AI-generated reflections and sketches;</li>
-          <li><a href="https://www.revenuecat.com/privacy" rel="noopener noreferrer">RevenueCat</a> for subscription and entitlement management; and</li>
-          <li><a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple</a> for App Store billing, purchases, refunds, and subscription management.</li>
+          <li><a href="https://www.revenuecat.com/privacy" rel="noopener noreferrer">RevenueCat</a> for subscription and entitlement management;</li>
+          <li><a href="https://www.apple.com/legal/privacy/" rel="noopener noreferrer">Apple</a> for App Store billing, purchases, refunds, and subscription management on iOS; and</li>
+          <li><a href="https://policies.google.com/privacy" rel="noopener noreferrer">Google Play</a> for Android app distribution, billing, purchases, refunds, and subscription management.</li>
         </ul>
         <p>
           These providers process information according to their own terms and privacy policies.
@@ -254,16 +263,17 @@
       <section class="panel">
         <h2>8. Subscriptions and billing</h2>
         <p>
-          Fleck subscriptions are handled through Apple’s App Store billing system. Apple may process payment,
-          purchase, refund, subscription, and account information according to Apple’s own terms and privacy policy.
-          Fleck does not directly receive your full payment card details.
+          Fleck subscriptions are handled through the app store for your device. On iOS, purchases and subscription management
+          are handled through Apple’s App Store billing system. On Android, purchases and subscription management are handled
+          through Google Play billing. Apple or Google may process payment, purchase, refund, subscription, and account information
+          according to their own terms and privacy policies. Fleck does not directly receive your full payment card details.
         </p>
         <p>
           RevenueCat helps Fleck determine whether your subscription is active and whether paid features should be available.
           RevenueCat may process subscription status, product identifiers, entitlement status, restore events, and related
           subscription data.
         </p>
-        <p>You can manage or cancel App Store subscriptions through your Apple account settings.</p>
+        <p>You can manage or cancel subscriptions through your Apple account settings or Google Play account settings, depending on where you purchased the subscription.</p>
       </section>
 
       <section class="panel">
@@ -308,9 +318,10 @@
         <h2>13. Your choices</h2>
         <p>You can choose not to use features that send data to third-party services. For example:</p>
         <ul>
-          <li>if you do not use transcription, your audio does not need to be sent to Deepgram for transcription;</li>
+          <li>if transcription does not run, your audio does not need to be sent to Deepgram for transcription;</li>
           <li>if you do not use AI reflection or sketch features, your journal text does not need to be sent to Google Gemini for those features;</li>
-          <li>you can manage subscriptions through your Apple account settings; and</li>
+          <li>you can turn off automatic daily sketch generation in Fleck settings and generate sketches manually instead;</li>
+          <li>you can manage subscriptions through your Apple account settings or Google Play account settings; and</li>
           <li>you can contact <a href="mailto:support@getveld.ai">support@getveld.ai</a> with privacy questions or support-related data requests.</li>
         </ul>
         <p>Some features may not work without the third-party processing required to provide them.</p>
@@ -332,6 +343,7 @@
         </p>
         <div class="footer-links">
           <a href="/fleck/support.html">Go to Fleck Support</a>
+          <a href="/fleck/terms.html">Fleck Terms of Use</a>
           <a href="https://www.apple.com/legal/internet-services/itunes/dev/stdeula/" rel="noopener noreferrer">Apple Standard EULA</a>
         </div>
       </section>
