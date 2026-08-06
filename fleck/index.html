@@ -458,6 +458,33 @@
       max-width: 760px;
     }
 
+    .android-gallery {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .android-shot {
+      margin: 0;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .android-shot img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .android-shot figcaption {
+      padding: 12px 6px 4px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
     .final-cta {
       text-align: center;
       padding: 86px 28px;
@@ -511,7 +538,8 @@
       .hero-grid,
       .split,
       .grid-3,
-      .grid-4 {
+      .grid-4,
+      .android-gallery {
         grid-template-columns: 1fr;
       }
 
@@ -562,7 +590,7 @@
             <a class="button button-primary" href="https://apps.apple.com/us/app/fleck-ai-journal/id6767761875" rel="noopener noreferrer">Download on the App Store</a>
             <a class="button button-secondary" href="#how">See how it works</a>
           </div>
-          <p class="note">Available now for iPhone. Android is in internal testing. Current prices and any eligible introductory offer are shown by the App Store before purchase. No coins, credits, or weekly subscription trap.</p>
+          <p class="note">Available now for iPhone. An Android release is being prepared for Google Play but is not publicly available yet. Current prices and any eligible introductory offer are shown by the applicable app store before purchase. No coins, credits, or weekly subscription trap.</p>
         </div>
 
         <div class="phone-card" aria-label="Illustration of Fleck voice notes becoming a daily sketch">
@@ -663,6 +691,34 @@
       </div>
     </section>
 
+    <section class="section" id="android-preview" aria-labelledby="android-preview-heading">
+      <div class="shell">
+        <div class="section-header">
+          <div class="eyebrow">Android preview</div>
+          <h2 id="android-preview-heading">Fleck is being prepared for Google Play.</h2>
+          <p>These screens show the Android journaling experience using synthetic example content. Android is not publicly available yet, and there is no verified public Google Play link to share. Download Fleck only from the official store links published by Veld.</p>
+        </div>
+        <div class="android-gallery">
+          <figure class="android-shot">
+            <img src="/fleck/assets/android/01-today-daily-sketch.png" alt="Fleck Today screen showing a synthetic daily sketch above the Leave a Fleck recording control" width="1080" height="1920">
+            <figcaption>Today and an editable daily sketch.</figcaption>
+          </figure>
+          <figure class="android-shot">
+            <img src="/fleck/assets/android/02-voice-capture.png" alt="Fleck Today screen actively recording a voice note with a timer and Finish button" width="1080" height="1920">
+            <figcaption>Voice-first capture while the moment is fresh.</figcaption>
+          </figure>
+          <figure class="android-shot">
+            <img src="/fleck/assets/android/03-editable-transcript.png" alt="Fleck transcript editor showing a synthetic voice-note transcript and Save controls" width="1080" height="1920">
+            <figcaption>Review and edit a transcript.</figcaption>
+          </figure>
+          <figure class="android-shot">
+            <img src="/fleck/assets/android/04-history-timeline.png" alt="Fleck History day detail showing a synthetic daily sketch and several Fleck entries" width="1080" height="1920">
+            <figcaption>Return to a day in History.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
     <section class="section comparison">
       <div class="shell">
         <div class="section-header">
@@ -691,7 +747,7 @@
         <div class="section-header">
           <div class="eyebrow">Privacy</div>
           <h2>Your journal should not feel like another feed.</h2>
-          <p>Fleck is built around private capture, local-first storage, and transparent AI processing. Some features may use third-party services for transcription, AI sketches, subscriptions, and App Store billing. We say that plainly because private software should not hide the tradeoffs.</p>
+          <p>Fleck is built around private capture, local-first storage, and transparent AI processing. Some features may use third-party services for transcription, AI sketches, subscriptions, and Apple App Store or Google Play billing. We say that plainly because private software should not hide the tradeoffs.</p>
           <div class="actions">
             <a class="button button-secondary" href="/fleck/privacy.html">Read the privacy policy</a>
             <a class="button button-secondary" href="/fleck/faq/">Read the FAQ</a>
@@ -749,7 +805,7 @@
             <a class="button button-primary" href="https://apps.apple.com/us/app/fleck-ai-journal/id6767761875" rel="noopener noreferrer">Download on the App Store</a>
             <a class="button button-secondary" href="/fleck/support.html">Contact support</a>
           </div>
-          <p class="note">Fleck is available now for iPhone. Android is currently in internal testing and is not publicly available yet.</p>
+          <p class="note">Fleck is available now for iPhone. Android is being prepared for Google Play and is not publicly available yet. No public Google Play URL has been verified.</p>
         </div>
       </div>
     </section>
