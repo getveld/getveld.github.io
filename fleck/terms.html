@@ -1,19 +1,19 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fleck Terms of Use | Veld</title>
     <meta
       name="description"
       content="Terms of Use for Fleck, the voice-first AI journal from Veld."
-    />
+    >
     <!-- Fleck favicon & app icon set -->
-    <link rel="icon" href="/fleck/assets/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/fleck/assets/favicon-16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/fleck/assets/favicon-32.png" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/fleck/assets/fleck-app-icon-180.png" />
-    <meta name="theme-color" content="#0d0d0f" />
+    <link rel="icon" href="/fleck/assets/favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="16x16" href="/fleck/assets/favicon-16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/fleck/assets/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/fleck/assets/fleck-app-icon-180.png">
+    <meta name="theme-color" content="#0d0d0f">
     <style>
       :root {
         --bg: #0d0d0f;
@@ -102,7 +102,29 @@
         margin-top: 18px;
       }
 
+      .shell { width: min(960px, calc(100% - 40px)); margin: 0 auto; }
+      .skip-link { position: absolute; left: 16px; top: -60px; padding: 10px 14px; background: var(--text); color: var(--bg); border-radius: 999px; z-index: 10; }
+      .skip-link:focus { top: 16px; }
+      .site-header { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(18px); background: rgba(13, 13, 15, 0.72); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
+      .site-nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+      .site-brand { display: inline-flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: -0.03em; }
+      .site-brand:hover { text-decoration: none; }
+      .site-brand-mark { width: 34px; height: 34px; border-radius: 12px; display: block; object-fit: cover; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28); }
+      .site-brand small { display: block; color: var(--muted); font-weight: 500; letter-spacing: 0; margin-top: -4px; }
+      .site-nav-links { display: flex; align-items: center; gap: 22px; font-size: 0.96rem; }
+      .site-nav-links a { color: var(--muted); text-decoration: none; }
+      .site-nav-links a:hover, .site-nav-links a[aria-current="page"] { color: var(--text); text-decoration: none; }
+      .site-nav-cta { padding: 10px 15px; border: 1px solid var(--border); border-radius: 999px; color: var(--text) !important; background: rgba(255, 255, 255, 0.04); }
+      .site-footer { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 38px 0 46px; color: var(--muted); }
+      .site-footer-inner { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+      .site-footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
+      .site-footer-links a { color: var(--muted); text-decoration: none; }
+      .site-footer-links a:hover { color: var(--text); text-decoration: none; }
+
       @media (max-width: 640px) {
+        .shell { width: min(100% - 28px, 960px); }
+        .site-nav { min-height: 0; padding: 16px 0; align-items: flex-start; }
+        .site-nav-links { display: none; }
         .wrap {
           padding: 32px 16px 64px;
         }
@@ -115,7 +137,25 @@
     </style>
   </head>
   <body>
-    <main class="wrap">
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="site-header">
+      <div class="shell site-nav">
+        <a class="site-brand" href="/fleck/" aria-label="Fleck home">
+          <img class="site-brand-mark" src="/fleck/assets/fleck-app-icon-180.png" alt="Fleck app icon">
+          <span>Fleck <small>by Veld</small></span>
+        </a>
+        <nav class="site-nav-links" aria-label="Fleck navigation">
+          <a href="/fleck/#how">How it works</a>
+          <a href="/fleck/#privacy">Trust</a>
+          <a href="/fleck/faq/">FAQ</a>
+          <a href="/fleck/support.html">Support</a>
+          <a href="/fleck/privacy.html">Privacy policy</a>
+          <a href="/fleck/terms.html" aria-current="page">Terms</a>
+          <a class="site-nav-cta" href="https://apps.apple.com/us/app/fleck-ai-journal/id6767761875" rel="noopener noreferrer">Download</a>
+        </nav>
+      </div>
+    </header>
+    <main id="main" class="wrap">
       <div class="eyebrow">Veld legal</div>
       <h1>Terms of Use for Fleck: AI Journal</h1>
       <p class="lede">Effective date: June 24, 2026</p>
@@ -264,5 +304,19 @@
         </div>
       </section>
     </main>
+    <footer class="site-footer">
+      <div class="shell site-footer-inner">
+        <div><strong>Fleck by Veld</strong><br><span>Voice-first private journaling.</span></div>
+        <div class="site-footer-links">
+          <a href="/">Veld</a>
+          <a href="/fleck/">Fleck</a>
+          <a href="/fleck/faq/">FAQ</a>
+          <a href="/fleck/support.html">Support</a>
+          <a href="/fleck/privacy.html">Fleck Privacy</a>
+          <a href="/fleck/terms.html">Fleck Terms</a>
+          <a href="mailto:support@getveld.ai">support@getveld.ai</a>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
