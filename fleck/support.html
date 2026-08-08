@@ -1,197 +1,64 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fleck Support | Veld</title>
-    <meta
-      name="description"
-      content="Support for Fleck, the voice-first AI journal from Veld. Get help with bugs, billing, privacy, exports, and subscriptions."
-    >
-    <!-- Fleck favicon & app icon set -->
-    <link rel="icon" href="/fleck/assets/favicon.ico" sizes="any">
-    <link rel="icon" type="image/png" sizes="16x16" href="/fleck/assets/favicon-16.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/fleck/assets/favicon-32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="/fleck/assets/fleck-app-icon-180.png">
-    <meta name="theme-color" content="#0d0d0f">
-    <style>
-      :root {
-        --bg: #0d0d0f;
-        --panel: #17171c;
-        --text: #f5f5f7;
-        --muted: #b7b7c2;
-        --accent: #d4b06a;
-        --border: #2a2a33;
-      }
-      * { box-sizing: border-box; }
-      body {
-        margin: 0;
-        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.6;
-      }
-      .wrap {
-        max-width: 860px;
-        margin: 0 auto;
-        padding: 56px 20px 80px;
-      }
-      .eyebrow {
-        color: var(--accent);
-        text-transform: uppercase;
-        letter-spacing: 0.12em;
-        font-size: 12px;
-        margin-bottom: 14px;
-      }
-      h1 {
-        font-size: clamp(2.2rem, 6vw, 4rem);
-        line-height: 1.05;
-        margin: 0 0 18px;
-      }
-      .lede {
-        color: var(--muted);
-        font-size: 1.1rem;
-        max-width: 52rem;
-      }
-      .panel {
-        margin-top: 32px;
-        background: var(--panel);
-        border: 1px solid var(--border);
-        border-radius: 20px;
-        padding: 28px;
-      }
-      h2 {
-        margin-top: 0;
-        font-size: 1.2rem;
-      }
-      a {
-        color: var(--accent);
-        text-decoration: none;
-      }
-      a:hover { text-decoration: underline; }
-      .meta {
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-      .shell { width: min(960px, calc(100% - 40px)); margin: 0 auto; }
-      .skip-link { position: absolute; left: 16px; top: -60px; padding: 10px 14px; background: var(--text); color: var(--bg); border-radius: 999px; z-index: 10; }
-      .skip-link:focus { top: 16px; }
-      .site-header { position: sticky; top: 0; z-index: 5; backdrop-filter: blur(18px); background: rgba(13, 13, 15, 0.72); border-bottom: 1px solid rgba(255, 255, 255, 0.08); }
-      .site-nav { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
-      .site-brand { display: inline-flex; align-items: center; gap: 12px; color: var(--text); text-decoration: none; font-weight: 700; letter-spacing: -0.03em; }
-      .site-brand:hover { text-decoration: none; }
-      .site-brand-mark { width: 34px; height: 34px; border-radius: 12px; display: block; object-fit: cover; box-shadow: 0 12px 30px rgba(0, 0, 0, 0.28); }
-      .site-brand small { display: block; color: var(--muted); font-weight: 500; letter-spacing: 0; margin-top: -4px; }
-      .site-nav-links { display: flex; align-items: center; gap: 22px; font-size: 0.96rem; }
-      .site-nav-links a { color: var(--muted); text-decoration: none; }
-      .site-nav-links a:hover, .site-nav-links a[aria-current="page"] { color: var(--text); text-decoration: none; }
-      .site-nav-cta { padding: 10px 15px; border: 1px solid var(--border); border-radius: 999px; color: var(--text) !important; background: rgba(255, 255, 255, 0.04); }
-      .site-footer { border-top: 1px solid rgba(255, 255, 255, 0.08); padding: 38px 0 46px; color: var(--muted); }
-      .site-footer-inner { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
-      .site-footer-links { display: flex; gap: 18px; flex-wrap: wrap; }
-      .site-footer-links a { color: var(--muted); text-decoration: none; }
-      .site-footer-links a:hover { color: var(--text); text-decoration: none; }
-      @media (max-width: 680px) {
-        .shell { width: min(100% - 28px, 960px); }
-        .site-nav { min-height: 0; padding: 16px 0; align-items: flex-start; }
-        .site-nav-links { display: none; }
-      }
-    </style>
-  </head>
-  <body>
-    <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-      <div class="shell site-nav">
-        <a class="site-brand" href="/fleck/" aria-label="Fleck home">
-          <img class="site-brand-mark" src="/fleck/assets/fleck-app-icon-180.png" alt="Fleck app icon">
-          <span>Fleck <small>by Veld</small></span>
-        </a>
-        <nav class="site-nav-links" aria-label="Fleck navigation">
-          <a href="/fleck/#how">How it works</a>
-          <a href="/fleck/#privacy">Trust</a>
-          <a href="/fleck/faq/">FAQ</a>
-          <a href="/fleck/support.html" aria-current="page">Support</a>
-          <a href="/fleck/privacy.html">Privacy policy</a>
-          <a href="/fleck/terms.html">Terms</a>
-          <a class="site-nav-cta" href="https://apps.apple.com/us/app/fleck-ai-journal/id6767761875" rel="noopener noreferrer">Download</a>
-        </nav>
-      </div>
-    </header>
-    <main id="main" class="wrap">
-      <div class="eyebrow">Veld support</div>
-      <h1>Fleck Support</h1>
-      <p class="lede">
-        Fleck is a voice-first journal for capturing small moments throughout your day.
-        If you need help with Fleck, have a billing question, or want to report a bug,
-        you can reach us here.
-      </p>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Fleck Support | Veld</title>
+  <meta name="description" content="Support for Fleck on iPhone and Android. Get help with journaling, AI features, privacy, exports, billing, and subscriptions.">
+  <meta property="og:title" content="Fleck Support">
+  <meta property="og:description" content="Help with Fleck for iPhone and Android.">
+  <meta property="og:image" content="https://getveld.ai/fleck/assets/fleck-app-icon-512.png">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://getveld.ai/fleck/support.html">
+  <link rel="icon" href="/fleck/assets/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="16x16" href="/fleck/assets/favicon-16.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/fleck/assets/favicon-32.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/fleck/assets/fleck-app-icon-180.png">
+  <meta name="theme-color" content="#0d0d0f">
+  <link rel="stylesheet" href="/fleck/assets/fleck-site.css">
+  <script src="/fleck/assets/fleck-store-links.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header"><div class="shell site-nav">
+    <a class="site-brand" href="/fleck/" aria-label="Fleck home"><img class="site-brand-mark" src="/fleck/assets/fleck-app-icon-180.png" alt=""><span>Fleck <small>by Veld</small></span></a>
+    <nav class="site-nav-links" aria-label="Fleck navigation"><a href="/fleck/#how">How it works</a><a href="/fleck/faq/">FAQ</a><a href="/fleck/support.html" aria-current="page">Support</a><a href="/fleck/privacy.html">Privacy</a><a href="/fleck/terms.html">Terms</a><a class="site-nav-cta" href="/fleck/#download">Download</a></nav>
+    <details class="mobile-menu"><summary aria-label="Open navigation menu">Menu</summary><nav class="mobile-menu-panel" aria-label="Mobile Fleck navigation"><a href="/fleck/#how">How it works</a><a href="/fleck/faq/">FAQ</a><a href="/fleck/support.html" aria-current="page">Support</a><a href="/fleck/privacy.html">Privacy</a><a href="/fleck/terms.html">Terms</a><a href="/fleck/#download">Download</a></nav></details>
+  </div></header>
 
-      <section class="panel">
-        <h2>Contact support</h2>
-        <p><strong>Email:</strong> <a href="mailto:support@getveld.ai">support@getveld.ai</a></p>
-        <p class="meta">We’ll do our best to respond as quickly as we can.</p>
+  <main id="main" class="document">
+    <div class="content-shell">
+      <div class="document-intro"><div class="eyebrow">Fleck support</div><h1>How can we help?</h1><p class="lede">Fleck is a voice-first journal for iPhone and Android. Get help with recording, AI features, privacy, exports, billing, or subscriptions.</p></div>
+
+      <section class="panel"><h2>Contact support</h2><p>Email <a href="mailto:support@getveld.ai">support@getveld.ai</a>. We will respond as quickly as we can.</p><p class="muted">Please do not send private journal text or recordings unless support specifically needs an example and you are comfortable sharing it. A synthetic example is usually enough.</p></section>
+
+      <section class="panel"><h2>Download Fleck</h2><div class="store-grid">
+        <article class="card store-card"><span class="store-label">iPhone</span><h3>Apple App Store</h3><p>Download and manage your iPhone version through Apple.</p><a class="button button-primary" href="https://apps.apple.com/us/app/fleck-ai-journal/id6767761875" rel="noopener noreferrer">Download on the App Store</a></article>
+        <article class="card store-card"><span class="store-label">Android</span><h3>Google Play</h3><p>Download and manage your Android version through Google Play. Do not use unofficial APK sites.</p><span class="button button-secondary button-pending" data-google-play-cta>Google Play link pending</span></article>
+      </div></section>
+
+      <section class="panel"><h2>Subscriptions and billing</h2>
+        <p><strong>Restore:</strong> Open Fleck Settings and choose <em>Restore Purchases</em>. Restore uses the Apple or Google account that originally made the purchase.</p>
+        <p><strong>Switching platforms:</strong> App Store and Google Play purchases do not automatically transfer between iPhone and Android because Fleck does not have a user account that links the two stores. Contact support before purchasing again on a different platform if you need help.</p>
+        <p><strong>Manage or cancel:</strong> Choose <em>Manage Subscription</em> in Fleck Settings, or open your App Store or Google Play subscription settings. Deleting Fleck does not cancel a subscription.</p>
+        <p><strong>Charges and refunds:</strong> Apple or Google handles charges and refund eligibility for purchases made through its store. Contact the store shown on your receipt. Veld does not receive your full payment-card details.</p>
       </section>
 
-      <section class="panel">
-        <h2>Privacy and terms</h2>
-        <p>
-          Fleck is designed as a local-first journaling app. When transcription or AI sketch
-          features are used, related content may be processed by third-party services needed to
-          provide those features.
-        </p>
-        <p>
-          <a href="/fleck/privacy.html">Read the Privacy Policy</a> ·
-          <a href="/fleck/terms.html">Read the Terms of Use</a> ·
-          <a href="/fleck/faq/">Read the FAQ</a>
-        </p>
-      </section>
-
-      <section class="panel">
-        <h2>Subscriptions and billing</h2>
-        <p><strong>Restore a purchase:</strong> Open Fleck Settings and choose <em>Restore Purchases</em>. Restore uses the Apple or Google account that originally made the purchase.</p>
-        <p><strong>Manage or cancel:</strong> Choose <em>Manage Subscription</em> in Fleck Settings, or open your Apple App Store or Google Play subscription settings. Deleting Fleck does not cancel a subscription.</p>
-        <p><strong>Refunds:</strong> Apple or Google handles charges and refund eligibility for purchases made through its store. Contact the store shown on your receipt. Veld does not receive your full payment-card details.</p>
-      </section>
-
-      <section class="panel">
-        <h2>Android availability</h2>
-        <p>Fleck for Android is being prepared for Google Play but is not publicly available yet. Veld has not published a verified public Google Play listing URL. Do not install Fleck from unofficial APK sites or download links.</p>
-      </section>
-
-      <section class="panel">
-        <h2>AI services and saved journal data</h2>
-        <p><strong>Turn off future AI processing:</strong> In Fleck Settings, turn off <em>Use AI services</em>. This also turns off automatic daily-sketch generation. It stops new AI requests but cannot recall content already processed.</p>
+      <section class="panel"><h2>AI services and saved journal data</h2>
+        <p><strong>Stop future AI processing:</strong> In Fleck Settings, turn off <em>Use AI services</em>. This also turns off automatic daily-sketch generation. It stops new AI requests but cannot recall content already processed.</p>
         <p><strong>Delete saved audio but keep text:</strong> Use the saved-audio deletion action for a recorded fleck. The transcript remains in your journal.</p>
-        <p><strong>Export:</strong> Choose <em>Export Journal</em> in Settings to create a Markdown text export. Original audio files are not included. After export, the file is controlled by the app or destination you choose in the share sheet.</p>
-        <p><strong>Backups and sync:</strong> Fleck has no user-created Fleck account or Fleck cloud-sync service. Journal data is stored in app storage and may be copied or restored by device backups according to your device and platform settings.</p>
+        <p><strong>Delete a fleck:</strong> Deleting or discarding a fleck removes it from local journal storage. For a recorded fleck, the saved local audio file is removed too. If a generated or stale daily sketch used that fleck, Fleck also removes the dependent sketch so deleted content does not remain there.</p>
+        <p><strong>Export:</strong> Choose <em>Export Journal</em> in Settings to create a Markdown text export. Original audio files are not included. After export, the file is controlled by the app or destination you select in the share sheet.</p>
+        <p><strong>Subscription privacy request:</strong> Choose <em>Privacy data request</em> in Settings. Fleck prepares an email with the pseudonymous RevenueCat support identifier needed to locate your subscription customer record. Support may require verification before processing the request. Deleting that record does not delete local journal data or cancel an App Store or Google Play subscription.</p>
+        <p><strong>Backups and sync:</strong> Fleck does not currently provide a user-created account or Fleck cloud sync. Journal data is stored in app storage and may be copied or restored by device backups according to your iPhone or Android settings.</p>
       </section>
 
-      <section class="panel">
-        <h2>Report a problem</h2>
-        <p>Email <a href="mailto:support@getveld.ai">support@getveld.ai</a> with:</p>
-        <ul>
-          <li>your device model and operating-system version;</li>
-          <li>the Fleck version and build shown at the bottom of Settings;</li>
-          <li>what you were trying to do and what happened instead; and</li>
-          <li>whether the problem happens again after reopening Fleck.</li>
-        </ul>
-        <p>Please do not send private journal text or recordings unless support specifically needs an example and you are comfortable sharing it. Synthetic examples are usually enough.</p>
-      </section>
+      <section class="panel"><h2>Report a problem</h2><p>When you email support, include:</p><ul><li>your device model and operating-system version;</li><li>the Fleck version and build shown at the bottom of Settings;</li><li>what you were trying to do and what happened instead;</li><li>whether the problem happens again after reopening Fleck; and</li><li>whether you installed Fleck from the App Store or Google Play.</li></ul></section>
 
-    </main>
-    <footer class="site-footer">
-      <div class="shell site-footer-inner">
-        <div><strong>Fleck by Veld</strong><br><span>Voice-first private journaling.</span></div>
-        <div class="site-footer-links">
-          <a href="/">Veld</a>
-          <a href="/fleck/">Fleck</a>
-          <a href="/fleck/faq/">FAQ</a>
-          <a href="/fleck/support.html">Support</a>
-          <a href="/fleck/privacy.html">Fleck Privacy</a>
-          <a href="/fleck/terms.html">Fleck Terms</a>
-          <a href="mailto:support@getveld.ai">support@getveld.ai</a>
-        </div>
-      </div>
-    </footer>
-  </body>
+      <section class="panel"><h2>Privacy, terms, and common questions</h2><p>Fleck stores your journal on your device and asks permission before future transcription or AI-sketch processing. Outside services are used as described in our policies.</p><div class="link-row"><a href="/fleck/faq/">Read the FAQ</a><a href="/fleck/privacy.html">Read the Privacy Policy</a><a href="/fleck/terms.html">Read the Terms of Use</a></div></section>
+    </div>
+  </main>
+
+  <footer class="site-footer"><div class="shell site-footer-inner"><div><strong>Fleck by Veld</strong><br><span>Voice-first private journaling for iPhone and Android.</span></div><nav class="site-footer-links" aria-label="Footer navigation"><a href="/">Veld</a><a href="/fleck/">Fleck</a><a href="/fleck/faq/">FAQ</a><a href="/fleck/support.html">Support</a><a href="/fleck/privacy.html">Privacy</a><a href="/fleck/terms.html">Terms</a><a href="mailto:support@getveld.ai">Email support</a></nav></div></footer>
+</body>
 </html>
