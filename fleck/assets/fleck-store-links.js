@@ -23,4 +23,20 @@ const FLECK_GOOGLE_PLAY_URL = "GOOGLE_PLAY_URL_PENDING";
     link.setAttribute("data-google-play-cta", "");
     placeholder.replaceWith(link);
   });
+
+  document.querySelectorAll("[data-google-play-link]").forEach((placeholder) => {
+    if (pending) {
+      placeholder.setAttribute("aria-disabled", "true");
+      placeholder.setAttribute("title", "Google Play link will be added after the public listing is verified");
+      return;
+    }
+
+    const link = document.createElement("a");
+    link.className = placeholder.className;
+    link.href = FLECK_GOOGLE_PLAY_URL;
+    link.rel = "noopener noreferrer";
+    link.textContent = placeholder.textContent;
+    link.setAttribute("data-google-play-link", "");
+    placeholder.replaceWith(link);
+  });
 })();
