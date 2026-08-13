@@ -31,23 +31,23 @@ The pages share one stylesheet, one visual system, matching desktop and mobile n
 
 The signed-out public Google Play listing is verified and configured as `https://play.google.com/store/apps/details?id=ai.getveld.fleck`.
 
-## Google Play URL launch switch
+## Google Play public links
 
-The launch switch in `fleck/assets/fleck-store-links.js` is now:
+The verified public listing is linked directly in normal HTML on the landing, FAQ, and Support pages:
 
-```js
-const FLECK_GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=ai.getveld.fleck";
+```text
+https://play.google.com/store/apps/details?id=ai.getveld.fleck
 ```
 
-Every direct Google Play CTA is populated from that single value. The top-level **Download** navigation item already points to the shared download section and requires no separate edit.
+Direct anchors are intentional: the Play destination remains crawlable and usable if JavaScript is disabled or an older script is cached. The top-level **Download** navigation item points to the shared download section.
 
-Do not use a Play Console URL, authenticated URL, guessed package URL, or preapproval testing URL. Verify the final listing signed out before inserting it.
+Do not use a Play Console URL, authenticated URL, guessed package URL, or preapproval testing URL.
 
 ## Final publication sequence
 
 1. Confirm Google Play shows Fleck as publicly available in the intended regions. **Complete: Production 1.0.2 (13), United States.**
 2. Open the final listing signed out and copy its stable HTTPS URL. **Complete.**
-3. Replace the single placeholder in `fleck/assets/fleck-store-links.js`. **Complete.**
+3. Replace every public placeholder with direct HTML anchors to the verified listing. **Complete.**
 4. Run:
 
    ```bash
