@@ -1,6 +1,6 @@
 # Fleck cross-platform website launch review
 
-Status: **LOCAL REVIEW HOLD — NOT PUBLISHED**
+Status: **PUBLICATION CANDIDATE — VERIFIED GOOGLE PLAY URL CONFIGURED**
 
 Prepared: August 8, 2026
 
@@ -29,25 +29,25 @@ All five pages are written for Fleck being publicly available on both:
 
 The pages share one stylesheet, one visual system, matching desktop and mobile navigation, and the same footer. Product, support, privacy, subscription, export, deletion, backup, AI-routing, age, and store terminology have been reconciled across the set.
 
-The only intentionally unresolved launch value is the signed-out public Google Play listing URL.
+The signed-out public Google Play listing is verified and configured as `https://play.google.com/store/apps/details?id=ai.getveld.fleck`.
 
 ## Google Play URL launch switch
 
-Replace this one value in `fleck/assets/fleck-store-links.js`:
+The launch switch in `fleck/assets/fleck-store-links.js` is now:
 
 ```js
-const FLECK_GOOGLE_PLAY_URL = "GOOGLE_PLAY_URL_PENDING";
+const FLECK_GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=ai.getveld.fleck";
 ```
 
-with the verified public HTTPS listing URL. Every direct Google Play CTA is populated from that single value. The top-level **Download** navigation item already points to the shared download section and requires no separate edit.
+Every direct Google Play CTA is populated from that single value. The top-level **Download** navigation item already points to the shared download section and requires no separate edit.
 
 Do not use a Play Console URL, authenticated URL, guessed package URL, or preapproval testing URL. Verify the final listing signed out before inserting it.
 
 ## Final publication sequence
 
-1. Confirm Google Play shows Fleck as publicly available in the intended regions.
-2. Open the final listing signed out and copy its stable HTTPS URL.
-3. Replace the single placeholder in `fleck/assets/fleck-store-links.js`.
+1. Confirm Google Play shows Fleck as publicly available in the intended regions. **Complete: Production 1.0.2 (13), United States.**
+2. Open the final listing signed out and copy its stable HTTPS URL. **Complete.**
+3. Replace the single placeholder in `fleck/assets/fleck-store-links.js`. **Complete.**
 4. Run:
 
    ```bash

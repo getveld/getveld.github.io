@@ -3,7 +3,7 @@
  * public Google Play listing URL. Every Google Play CTA is populated from
  * this single value. Do not use a guessed or authenticated Console URL.
  */
-const FLECK_GOOGLE_PLAY_URL = "GOOGLE_PLAY_URL_PENDING";
+const FLECK_GOOGLE_PLAY_URL = "https://play.google.com/store/apps/details?id=ai.getveld.fleck";
 
 (function configureStoreLinks() {
   const pending = FLECK_GOOGLE_PLAY_URL === "GOOGLE_PLAY_URL_PENDING";
