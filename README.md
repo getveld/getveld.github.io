@@ -1,32 +1,32 @@
-# Veld site — publish-ready bundle
+# Veld corporate website
 
-Drop this entire folder's contents at the root of `getveld/getveld.github.io` (replacing the existing `index.html` and adding `assets/icons/`).
+Static GitHub Pages site for `getveld.ai`.
 
-## What's in here
+## Public routes
 
+- `/` — Veld corporate homepage
+- `/consulting/` — workflow-first consulting
+- `/how-veld-decides/` — consulting decision method
+- `/privacy/` — corporate website privacy policy
+- `/terms/` — corporate website terms
+- `/fleck/` — Fleck product site and product-specific legal/support pages
+
+The corporate pages are semantic static HTML/CSS with self-hosted Inter Tight fonts. They use no runtime JavaScript, forms, analytics, trackers, cookies, booking widgets, or external font/CDN requests. Fleck remains an independently validated product subtree.
+
+## Local verification
+
+```bash
+python3 -m http.server 8766 --bind 127.0.0.1
+python3 scripts/validate-site.py
+python3 fleck/scripts/validate-launch-site.py --require-google-play-url
+npx --yes html-validate@10.4.0 \
+  index.html consulting/index.html how-veld-decides/index.html \
+  privacy/index.html terms/index.html 404.html privacy.html terms.html
+git diff --check
 ```
-index.html              ← entry point
-colors_and_type.css     ← brand tokens + Inter Tight import
-site.css                ← layout & component styles
-site.jsx                ← React app (loaded by Babel in-browser)
-App.jsx                 ← root component
-*.jsx                   ← section components (Hero, About, Products, etc.)
-site.webmanifest        ← PWA manifest
-assets/icons/           ← favicon, app icons (16/32/180/192/512 + SVG + maskable)
-```
 
-## What changed vs. the live site
+Then verify every route at desktop and mobile widths, including keyboard navigation, links, images, console/network state, horizontal overflow, metadata, and WCAG A/AA checks.
 
-1. **Tagline updated** — copy now says _"AI that pays back."_ (the locked tagline as of 2026-04-29).
-2. **Favicon set wired up** — was a placeholder before; now serves Strategy A (deep-field bg + chalk blade-mark) at every standard size.
-3. **Theme color** — `#23382F` (deep field) for browser chrome on mobile.
-4. **PWA manifest** — proper icons for Android home-screen install.
+## Publication
 
-## Sanity check before pushing
-
-Open `index.html` locally — the page should render with the blade-mark favicon visible in the browser tab.
-
-## Notes
-
-- The site uses in-browser Babel transformation (the React + Babel CDN scripts in `<head>`). This is fine for a brochure site at this traffic level; if/when you precompile, the JSX files compile straight to JS with no other changes.
-- No build step required. Push as-is.
+GitHub Pages publishes the root of `main` to `getveld.ai`. Treat merge to `main` as a production deployment. Preserve `CNAME`, the complete `/fleck/` subtree, and a rollback commit before merging. After merge, verify the Pages deployment and fetch/render every public route from the custom domain.
