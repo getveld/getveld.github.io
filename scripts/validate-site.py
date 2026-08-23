@@ -4,7 +4,7 @@ from __future__ import annotations
 from html.parser import HTMLParser
 from pathlib import Path
 from urllib.parse import urlparse, unquote
-import json, sys
+import json, re, sys
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGES = [
@@ -59,14 +59,17 @@ for page in PAGES:
         if tag=="script" and a.get("src") and urlparse(a["src"]).netloc: errors.append(f"{rel}: external script {a['src']}")
         if tag=="link" and "stylesheet" in a.get("rel","") and urlparse(a.get("href","")).netloc: errors.append(f"{rel}: external stylesheet {a['href']}")
     lower=body.lower()
-    for phrase in ("ai that pays back", "coming soon", "currently accepting a small number", "guaranteed roi", "guarantee savings"):
+    for phrase in ("ai that pays back", "coming soon", "currently accepting a small number"):
         if phrase in lower: errors.append(f"{rel}: stale/unsafe phrase {phrase!r}")
+    claims_scan = lower.replace("does not guarantee savings", "")
+    if re.search(r"\b(?:guarantee|guarantees|guaranteed|guaranteeing)\s+(?:savings|roi)\b", claims_scan):
+        errors.append(f"{rel}: unsafe positive savings/ROI guarantee")
 
 home=(ROOT/"index.html").read_text(encoding="utf-8")
 for required in ("independent technology company", "/fleck/", "/consulting/", "25 years", "steven@getveld.ai"):
     if required.lower() not in home.lower(): errors.append(f"index.html: missing {required!r}")
 consulting=(ROOT/"consulting/index.html").read_text(encoding="utf-8")
-for required in ("not a free audit", "no change", "paid diagnostic", "does not promise savings"):
+for required in ("not a free audit", "no change", "paid assessment", "does not guarantee savings"):
     if required.lower() not in consulting.lower(): errors.append(f"consulting: missing {required!r}")
 privacy=(ROOT/"privacy/index.html").read_text(encoding="utf-8")
 for required in ("does not currently provide an account", "does not currently add site-controlled analytics", "Fleck Privacy Policy", "Google Workspace"):
