@@ -59,7 +59,7 @@ for page in PAGES:
         if tag=="script" and a.get("src") and urlparse(a["src"]).netloc: errors.append(f"{rel}: external script {a['src']}")
         if tag=="link" and "stylesheet" in a.get("rel","") and urlparse(a.get("href","")).netloc: errors.append(f"{rel}: external stylesheet {a['href']}")
     lower=body.lower()
-    for phrase in ("ai that pays back", "coming soon", "currently accepting a small number"):
+    for phrase in ("ai that pays back", "coming soon", "currently accepting a small number", "west jordan"):
         if phrase in lower: errors.append(f"{rel}: stale/unsafe phrase {phrase!r}")
     claims_scan = lower.replace("does not guarantee savings", "")
     if re.search(r"\b(?:guarantee|guarantees|guaranteed|guaranteeing)\s+(?:savings|roi)\b", claims_scan):
