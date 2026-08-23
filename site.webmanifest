@@ -1,7 +1,7 @@
 {
   "name": "Veld",
   "short_name": "Veld",
-  "description": "Veld builds software products, including Fleck, and helps owner-led service businesses improve recurring work before choosing automation or AI.",
+  "description": "Veld builds software products and helps owner-led service businesses improve recurring work before choosing automation or AI.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5F3EE",
