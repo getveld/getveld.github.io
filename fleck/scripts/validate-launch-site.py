@@ -20,6 +20,7 @@ PAGES = [
     FLECK_ROOT / "terms.html",
 ]
 STORE_LINKS = FLECK_ROOT / "assets" / "fleck-store-links.js"
+SUPPORT_EMAIL = "fleck-support@getveld.ai"
 STALE_LAUNCH_LANGUAGE = (
     "not publicly available",
     "being prepared for google play",
@@ -97,6 +98,15 @@ def main() -> int:
         for phrase in REQUIRED_TRUTH_CLAIMS.get(relative.as_posix(), ()):
             if phrase not in text.lower():
                 failures.append(f"{relative}: required truth claim missing: {phrase}")
+        expected_mailto = f"mailto:{SUPPORT_EMAIL}"
+        mailto_refs = [reference for reference in parsed.refs if reference.lower().startswith("mailto:")]
+        if expected_mailto not in mailto_refs:
+            failures.append(f"{relative}: missing product support link {expected_mailto}")
+        if SUPPORT_EMAIL not in text:
+            failures.append(f"{relative}: missing visible product support address {SUPPORT_EMAIL}")
+        for reference in mailto_refs:
+            if reference != expected_mailto:
+                failures.append(f"{relative}: unexpected product email link {reference}")
         for reference in parsed.refs:
             target = local_target(reference)
             if target is not None and not target.exists():
