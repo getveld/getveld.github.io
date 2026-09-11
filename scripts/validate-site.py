@@ -11,6 +11,7 @@ PAGES = [
     ROOT / "index.html",
     ROOT / "consulting/index.html",
     ROOT / "how-veld-decides/index.html",
+    ROOT / "agent-move-evidence/index.html",
     ROOT / "privacy/index.html",
     ROOT / "terms/index.html",
     ROOT / "404.html",
@@ -77,6 +78,17 @@ for required in ("does not currently provide an account", "does not currently ad
 terms=(ROOT/"terms/index.html").read_text(encoding="utf-8")
 for required in ("does not create a consulting relationship", "separate written agreement", "Fleck Terms of Use"):
     if required.lower() not in terms.lower(): errors.append(f"terms: missing {required!r}")
+
+evidence_page=(ROOT/"agent-move-evidence/index.html").read_text(encoding="utf-8")
+for required in ("synthetic", "partial", "five actions remained unresolved", "not a security audit", "not a proposal"):
+    if required.lower() not in evidence_page.lower(): errors.append(f"agent-move evidence: missing {required!r}")
+for unsafe in ("production ready", "fully migrated", "guaranteed", "customer outcome", "customer case study"):
+    if unsafe in evidence_page.lower(): errors.append(f"agent-move evidence: unsafe claim {unsafe!r}")
+if re.search(r"(?:\$|USD\s*)\d", evidence_page, re.IGNORECASE): errors.append("agent-move evidence: fixed currency price")
+if "/agent-move-evidence/" not in (ROOT/"how-veld-decides/index.html").read_text(encoding="utf-8"):
+    errors.append("how-veld-decides: missing agent-move evidence contextual link")
+if "https://getveld.ai/agent-move-evidence/" not in (ROOT/"sitemap.xml").read_text(encoding="utf-8"):
+    errors.append("sitemap: missing agent-move evidence route")
 
 manifest=json.loads((ROOT/"site.webmanifest").read_text(encoding="utf-8"))
 if "AI that pays back" in manifest.get("description",""): errors.append("manifest: stale positioning")

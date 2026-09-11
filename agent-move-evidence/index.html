@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Synthetic agent-move evidence prototype | Veld</title>
+  <meta name="description" content="A synthetic proof of method for inventorying an AI-agent move, keeping unresolved work visible, and checking one declared target behavior.">
+  <link rel="canonical" href="https://getveld.ai/agent-move-evidence/">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="Synthetic agent-move evidence prototype">
+  <meta property="og:description" content="A synthetic proof of method for making one AI-agent move reviewable.">
+  <meta property="og:url" content="https://getveld.ai/agent-move-evidence/">
+  <meta property="og:image" content="https://getveld.ai/assets/icons/icon-512.png">
+  <link rel="icon" href="/assets/icons/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/icon-32.png">
+  <link rel="apple-touch-icon" href="/assets/icons/icon-180.png">
+  <meta name="theme-color" content="#23382f">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'none'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'; upgrade-insecure-requests">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="shell site-header__inner">
+    <a class="brand" href="/" aria-label="Veld home"><svg class="brand-mark" viewBox="0 0 20 32" fill="none" aria-hidden="true"><path d="M4 31Q2 19 10 13M16 31Q19 16 12 1" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg><span>veld</span></a>
+    <nav class="desktop-nav" aria-label="Primary navigation"><a href="/">Company</a><a href="/fleck/">Fleck</a><a href="/consulting/">Consulting</a><a href="/how-veld-decides/">How Veld decides</a><a class="nav-contact" href="mailto:steven@getveld.ai">Contact</a></nav>
+    <details class="mobile-menu"><summary>Menu</summary><nav class="mobile-panel" aria-label="Mobile navigation"><a href="/">Company</a><a href="/fleck/">Fleck</a><a href="/consulting/">Consulting</a><a href="/how-veld-decides/">How Veld decides</a><a href="mailto:steven@getveld.ai">Contact</a></nav></details>
+  </div>
+</header>
+<main id="main">
+  <section class="page-hero"><div class="shell"><p class="eyebrow eyebrow--light">Proof of method · Synthetic demonstration</p><h1>Can an AI-agent move be checked, not just copied?</h1><p class="lede">This early Veld prototype makes a narrow part of an agent-framework move reviewable: inventory what exists, show what can and cannot move deterministically, rehearse changes in isolation, and check one declared target behavior.</p></div></section>
+
+  <section class="content-section"><div class="reading prose">
+    <div class="notice"><strong>What this page proves</strong><p class="notice-copy">This page reports one checked-in synthetic Hermes-to-OpenClaw demonstration. It uses no customer system, production profile, live account, or credential value. It is not evidence of customer use, broad framework compatibility, production readiness, security certification, or complete behavioral equivalence.</p></div>
+    <h2>The problem being tested</h2>
+    <p>An agent profile can contain instructions, skills, schedules, memories, dependencies, model choices, plugins, channels, and tool-server configuration. In the synthetic fixture, those artifacts do not all transfer the same way: some match exactly, some require translation, some degrade, some require new authorization, and one is unsupported.</p>
+    <p>A successful startup would not, by itself, show which differences remained or whether a specific translated setting still matched its declared requirement.</p>
+  </div></section>
+
+  <section class="section section--paper"><div class="reading"><p class="eyebrow">The method</p><h2>Plan, isolate, and verify before calling the move complete.</h2><div class="method-list">
+    <article class="method-step"><div><h3>Inventory and compare</h3><p>Scan the synthetic source and compare each inventoried artifact with the declared target capabilities.</p></div></article>
+    <article class="method-step"><div><h3>Plan before applying</h3><p>Classify every artifact as copy, translate, manual, reauthorize, or skip. Keep unresolved work visible rather than treating it as success.</p></div></article>
+    <article class="method-step"><div><h3>Apply only in isolation</h3><p>Apply deterministic actions to a new, empty, disposable target. Do not modify the source profile.</p></div></article>
+    <article class="method-step"><div><h3>Verify a declared behavior</h3><p>Check one machine-readable acceptance condition and bind the plan, contract, and receipt with checksums.</p></div></article>
+  </div></div></section>
+
+  <section class="content-section"><div class="reading prose">
+    <h2>What the synthetic run showed</h2>
+    <p>The fixture contained nine artifacts. The plan accounted for all nine:</p>
+    <ul><li>2 copied;</li><li>2 translated;</li><li>2 left for manual work;</li><li>2 requiring reauthorization; and</li><li>1 unsupported item skipped.</li></ul>
+    <p>The baseline run passed one declared schedule check. Its receipt reported <strong>partial</strong>, not complete, because five actions remained unresolved. The source checksum remained unchanged, and the plan accounted for 9 of 9 artifacts.</p>
+    <p>The negative control changed the translated schedule from <code>0 9 * * *</code> to <code>0 7 * * *</code>. The same acceptance contract rejected that target and reported the exact expected and actual values.</p>
+
+    <h2>What “verified” means here</h2>
+    <p>“Verified” means only that the declared deterministic work, integrity checks, artifact accounting, and one acceptance condition passed at receipt issuance.</p>
+    <p>It does not mean that every behavior was tested, unresolved work is safe to ignore, credentials were moved, a production cutover is ready, or the target will remain unchanged after the receipt is issued.</p>
+
+    <h2>Safety boundaries</h2>
+    <ul>
+      <li>This public demonstration uses synthetic inputs only.</li>
+      <li>No live credentials, private keys, tokens, production profiles, customer records, or regulated data are requested or used.</li>
+      <li>Credential references can be classified, but credential values are not transferred; authorization remains a separate operator action.</li>
+      <li>Deterministic actions are limited to a new, empty, isolated target.</li>
+      <li>Binary and non-UTF-8 artifacts remain manual.</li>
+      <li>Likely-secret detection is heuristic and conservative. It reduces accidental exposure but is not a security audit or proof that arbitrary prose contains no secret.</li>
+      <li>Hermes and OpenClaw identify the synthetic fixture formats only. Veld is not affiliated with or endorsed by either project.</li>
+      <li>This page is informational and is not a proposal, price, service-level commitment, or promise that a pilot is available.</li>
+    </ul>
+  </div></section>
+
+  <section class="contact-band"><div class="shell contact-band__inner"><div><p><strong>Help test the question</strong></p><h2>Have you moved an agent workload?</h2><p class="contact-note">Veld is interviewing engineering, platform, and AI-operations owners about what broke, what remained manual, and what evidence would have improved the decision. No production access, credentials, customer data, purchase, or endorsement is requested.</p></div><p><a href="mailto:steven@getveld.ai?subject=Agent-move%20research%20interview">Share a migration workflow →</a></p></div></section>
+</main>
+<footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><a class="brand brand--footer" href="/"><span>veld</span></a><p>Independent technology company</p></div><nav class="footer-links" aria-label="Footer navigation"><a href="/">Company</a><a href="/fleck/">Fleck</a><a href="/consulting/">Consulting</a><a href="/how-veld-decides/">How Veld decides</a><a href="/privacy/">Privacy</a><a href="/terms/">Terms</a><a href="mailto:steven@getveld.ai">Contact</a></nav></div><div class="shell footer-bottom">© 2026 Veld, LLC. All rights reserved.</div></footer>
+</body>
+</html>
