@@ -353,8 +353,8 @@ details.faq-item ul { padding-left: 22px; }
 @media (max-width: 520px) {
   .shell, .content-shell { width: min(100% - 28px, var(--max)); }
   .hero h1 {
-    font-size: clamp(2.65rem, 13.5vw, 4.25rem);
-    letter-spacing: -0.055em;
+    font-size: clamp(2.5rem, 11.5vw, 4.25rem);
+    letter-spacing: -0.05em;
     overflow-wrap: anywhere;
   }
   .screenshot-gallery { grid-template-columns: 1fr; }
