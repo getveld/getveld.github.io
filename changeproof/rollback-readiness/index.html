@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A synthetic PostgreSQL rollback example showing why successful rollback execution is not the same as demonstrated previous-application compatibility.">
+  <title>ChangeProof synthetic PostgreSQL rollback example</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to the example</a>
+  <header class="site-header">
+    <div class="shell">
+      <p class="eyebrow">ChangeProof · synthetic technical example</p>
+    </div>
+  </header>
+
+  <main id="main-content" class="shell">
+    <section class="hero" aria-labelledby="page-title">
+      <p class="status-pill">Decision from this fixture: block</p>
+      <h1 id="page-title">The rollback ran. The old application check still failed.</h1>
+      <p class="lede">This page walks through one synthetic PostgreSQL fixture. The rollback SQL completed, the row count and index checks passed, and the declared generation value returned to its earlier value. A separate SQL read proxy for previous-application behavior then returned <strong>99</strong> instead of the expected <strong>7</strong>.</p>
+      <p class="boundary"><strong>Execution boundary:</strong> the proxy ran <code>SELECT legacy_value FROM r3_items WHERE id = 1</code>. No application binary was executed; application startup and write behavior remain untested.</p>
+      <p class="boundary">That result is evidence about this fixture and these declared checks. It is not a production-safety claim, a compatibility guarantee, or evidence of buyer demand.</p>
+    </section>
+
+    <nav class="section-nav" aria-label="Page sections">
+      <a href="#scenario">Scenario</a>
+      <a href="#sequence">Sequence</a>
+      <a href="#results">Results</a>
+      <a href="#limits">Limits</a>
+      <a href="#provenance">Provenance</a>
+    </nav>
+
+    <section id="scenario" aria-labelledby="scenario-title">
+      <p class="section-kicker">01 · Scenario</p>
+      <h2 id="scenario-title">A deliberately small compatibility failure</h2>
+      <p>The fixture starts with one row. The prior application expects <code>legacy_value = 7</code> and <code>generation = 1</code>. The forward migration changes the generation to <code>2</code>. The synthetic rollback returns the generation to <code>1</code> but also changes the legacy value to <code>99</code>.</p>
+      <div class="code-grid" aria-label="Synthetic SQL used by the example">
+        <article>
+          <h3>Starting state</h3>
+          <pre><code>CREATE TABLE r3_items (
+  id integer PRIMARY KEY,
+  legacy_value integer,
+  generation integer
+);
+INSERT INTO r3_items VALUES (1, 7, 1);</code></pre>
+        </article>
+        <article>
+          <h3>Forward migration</h3>
+          <pre><code>UPDATE r3_items
+SET generation = 2;</code></pre>
+        </article>
+        <article>
+          <h3>Rollback under review</h3>
+          <pre><code>UPDATE r3_items
+SET generation = 1;
+
+UPDATE r3_items
+SET legacy_value = 99;</code></pre>
+        </article>
+      </div>
+    </section>
+
+    <section id="sequence" aria-labelledby="sequence-title">
+      <p class="section-kicker">02 · Sequence</p>
+      <h2 id="sequence-title">What actually ran</h2>
+      <ol class="timeline">
+        <li><strong>Establish old state.</strong> Create the table and index, insert the synthetic row, and verify the declared SQL read proxy returns <code>7</code>.</li>
+        <li><strong>Apply the forward SQL.</strong> Verify the new generation is <code>2</code>, the same SQL read proxy still returns <code>7</code>, and the row-count invariant remains <code>1</code>.</li>
+        <li><strong>Execute the rollback SQL.</strong> The database accepts both rollback statements without an execution error.</li>
+        <li><strong>Run post-rollback checks.</strong> The generation, row count, and index checks pass. The SQL read proxy fails because it returns <code>99</code> instead of <code>7</code>. This is not evidence that an application binary started or completed a workflow.</li>
+        <li><strong>Restore the disposable snapshot.</strong> Cleanup returns the fixture to its initial value. Snapshot cleanup is not counted as evidence that the rollback itself was compatible.</li>
+      </ol>
+    </section>
+
+    <section id="results" aria-labelledby="results-title">
+      <p class="section-kicker">03 · Results</p>
+      <h2 id="results-title">The evidence separates execution from behavior</h2>
+      <div class="table-wrap" tabindex="0" aria-label="Scrollable check results">
+        <table>
+          <caption>Declared checks for synthetic case <code>r3_postgresql_mismatch_bad</code></caption>
+          <thead>
+            <tr><th scope="col">Stage</th><th scope="col">Check</th><th scope="col">Expected</th><th scope="col">Observed</th><th scope="col">Status</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Old state</td><td>Previous-application SQL read proxy</td><td>7</td><td>7</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Forward</td><td>New generation</td><td>2</td><td>2</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Forward</td><td>Row count</td><td>1</td><td>1</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Forward</td><td>Forward index check</td><td>—</td><td>Not executed</td><td><span class="skip">Skipped: not requested</span></td></tr>
+            <tr><td>Rollback</td><td>Rollback SQL execution</td><td>Completes</td><td>Completed</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Post-rollback</td><td>Generation restored</td><td>1</td><td>1</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Post-rollback</td><td>Row count</td><td>1</td><td>1</td><td><span class="pass">Pass</span></td></tr>
+            <tr><td>Post-rollback</td><td>Index present</td><td>Present</td><td>Present</td><td><span class="pass">Pass</span></td></tr>
+            <tr class="failure-row"><td>Post-rollback</td><td>Previous-application SQL read proxy</td><td>7</td><td>99</td><td><span class="fail">Fail</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="decision-card">
+        <p class="section-kicker">Advisory disposition</p>
+        <h3>Block on the declared compatibility failure</h3>
+        <p>The receipt's stage label is <code>post-rollback-old-binary-startup</code>, but the observed check was only the declared SQL read proxy. It records a material failure for that proxy; it does not establish that an application binary was launched or that startup or write workflows were exercised.</p>
+      </div>
+    </section>
+
+    <section id="limits" aria-labelledby="limits-title">
+      <p class="section-kicker">04 · Evidence limits</p>
+      <h2 id="limits-title">What this did—and did not—prove</h2>
+      <div class="two-column">
+        <article class="boundary-card positive">
+          <h3>What the example demonstrated</h3>
+          <ul>
+            <li>The listed SQL ran against a disposable PostgreSQL database.</li>
+            <li>The rollback statements completed without a database execution error.</li>
+            <li>The declared post-rollback SQL read proxy returned a value different from its expected value.</li>
+            <li>The receipt kept the skipped forward-index check visible rather than treating it as a pass.</li>
+          </ul>
+        </article>
+        <article class="boundary-card caution">
+          <h3>What remains unproven</h3>
+          <ul>
+            <li>Application binary startup, application write behavior, end-to-end workflow behavior, or broader previous-version compatibility.</li>
+            <li>Production safety, zero data loss, complete compatibility, or release approval.</li>
+            <li>Fresh hidden-holdout generalization or a complete manifest acceptance.</li>
+            <li>Coverage for other PostgreSQL versions, tools, schemas, extensions, or topologies.</li>
+            <li>Observed customer outcomes, buyer demand, willingness to pay, or remediation success.</li>
+            <li>Any check not listed in the evidence packet.</li>
+          </ul>
+        </article>
+      </div>
+      <aside class="history-note" aria-labelledby="history-title">
+        <h3 id="history-title">Evidence-history note</h3>
+        <p>An earlier historical R1 snapshot has a documented hash mismatch that Steven accepted as a protected-evidence exception on October 31, 2026. The record was not rewritten. That exception is separate from this synthetic run and prevents presenting the broader evidence history as a perfect custody chain.</p>
+      </aside>
+    </section>
+
+    <section id="provenance" aria-labelledby="provenance-title">
+      <p class="section-kicker">05 · Provenance</p>
+      <h2 id="provenance-title">Exact fixture and evidence identity</h2>
+      <dl class="provenance-list">
+        <div><dt>Evidence class</dt><dd>Exposed-regression development evidence</dd></div>
+        <div><dt>Case</dt><dd><code>r3_postgresql_mismatch_bad</code></dd></div>
+        <div><dt>Execution date</dt><dd>November 1, 2026</dd></div>
+        <div><dt>Candidate snapshot</dt><dd><code>a47491a63373455598b469eff43a423ba3d6d689af88686fb196eccc09cc069a</code></dd></div>
+        <div><dt>Independent review receipt</dt><dd><code>4917346fa987dddc624982cd9ec957af64e62842a6d0a67049f278fe2f6ad71e</code></dd></div>
+        <div><dt>Fixture</dt><dd><code>6f7859418a6d3acc25d945fb6b20ff9bfa3fb64308a4bb995ba4dbebcfe0fc72</code></dd></div>
+        <div><dt>Run receipt</dt><dd><code>9ec2a5634a4603507898d8c105dcaf6d9fcb772ac8ae50e7a1e7ec01d831d949</code></dd></div>
+        <div><dt>PostgreSQL image</dt><dd><code>sha256:5660c2cbfea50c7a9127d17dc4e48543eedd3d7a41a595a2dfa572471e37e64c</code></dd></div>
+      </dl>
+      <p>Download the sanitized machine-readable <a href="evidence/example.json">example evidence</a> or inspect the <a href="release-readiness.json">release controls</a>. These files contain synthetic evidence only.</p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="shell">
+      <p><strong>Published synthetic example.</strong> No tracking, form, upload, contact path, or account action is included. LinkedIn posting, replies, contact, data intake, and spending are not authorized by this page.</p>
+    </div>
+  </footer>
+</body>
+</html>
