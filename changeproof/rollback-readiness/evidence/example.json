@@ -1,0 +1,67 @@
+{
+  "schema_version": "changeproof-public-example-v1",
+  "title": "Synthetic PostgreSQL rollback with a post-rollback old-application mismatch",
+  "data_classification": "synthetic",
+  "evidence_class": "exposed-regression-development-evidence",
+  "execution_date": "2026-11-01",
+  "case_id": "r3_postgresql_mismatch_bad",
+  "engine": "postgresql",
+  "engine_identity": "sha256:5660c2cbfea50c7a9127d17dc4e48543eedd3d7a41a595a2dfa572471e37e64c",
+  "execution_mode": "docker-postgresql",
+  "candidate_snapshot_sha256": "a47491a63373455598b469eff43a423ba3d6d689af88686fb196eccc09cc069a",
+  "independent_review_receipt_sha256": "4917346fa987dddc624982cd9ec957af64e62842a6d0a67049f278fe2f6ad71e",
+  "fixture_sha256": "6f7859418a6d3acc25d945fb6b20ff9bfa3fb64308a4bb995ba4dbebcfe0fc72",
+  "source_case_file_sha256": "f31ca76f4102bef7f2bad83dd1e115062e017fe8a8b33d03c7410194fc123942",
+  "source_receipt_file_sha256": "9ec2a5634a4603507898d8c105dcaf6d9fcb772ac8ae50e7a1e7ec01d831d949",
+  "source_matrix_file_sha256": "79d047eba41ef1ef13a23c26d375600d3b95574b26b067ccb4d4a0a08353c611",
+  "source_trace_file_sha256": "875be8a8556cc1c7ea8d7796144cd2594e256d4eb19370d992deef58dd14ae6e",
+  "previous_application_probe_kind": "sql-read-proxy",
+  "previous_application_read_sql": "SELECT legacy_value FROM r3_items WHERE id = 1",
+  "application_binary_executed": false,
+  "application_startup_executed": false,
+  "application_write_behavior_executed": false,
+  "migration_sha256": "241b9543574b5834a13474142b5d4c9041dd2e46e6480a5a6e3fe25794eb3599",
+  "rollback_sql_sha256": "43777d558efc002bdb32871abb758686a8bb4465c60673c5b85687cbf584c17b",
+  "decision": "block",
+  "failure_stage": "post-rollback-old-binary-startup",
+  "material_failure": true,
+  "fixture": {
+    "starting_row": {"id": 1, "legacy_value": 7, "generation": 1},
+    "forward_sql": "UPDATE r3_items SET generation = 2;",
+    "rollback_sql": "UPDATE r3_items SET generation = 1; UPDATE r3_items SET legacy_value = 99;",
+    "old_application_read_sql": "SELECT legacy_value FROM r3_items WHERE id = 1"
+  },
+  "checks": {
+    "old_state_old_application_read": {"status": "pass", "expected": 7, "actual": 7, "executed": true},
+    "forward_new_generation": {"status": "pass", "expected": 2, "actual": 2, "executed": true},
+    "forward_row_count": {"status": "pass", "expected": 1, "actual": 1, "executed": true},
+    "forward_index": {"status": "skip", "passed": null, "executed": false, "reason": "not-requested"},
+    "rollback_execution": {"status": "pass", "passed": true, "executed": true},
+    "post_rollback_generation": {"status": "pass", "expected": 1, "actual": 1, "executed": true},
+    "post_rollback_row_count": {"status": "pass", "expected": 1, "actual": 1, "executed": true},
+    "post_rollback_index": {"status": "pass", "expected": true, "actual": true, "executed": true},
+    "post_rollback_old_application_read": {"status": "fail", "expected": 7, "actual": 99, "executed": true}
+  },
+  "unsupported_or_unexecuted": [
+    "The previous-application check was a declared SQL read proxy: SELECT legacy_value FROM r3_items WHERE id = 1.",
+    "No application binary was executed; application startup and write behavior remain untested.",
+    "The forward-phase index probe was not requested and remained an explicit skip.",
+    "No claim is made for checks absent from this packet.",
+    "This focused example did not execute a fresh hidden holdout or establish complete-manifest acceptance."
+  ],
+  "proof_limits": [
+    "No production safety, zero-data-loss, compatibility, security, compliance, or release guarantee.",
+    "No generalization beyond this synthetic fixture, engine image, SQL, and declared checks.",
+    "No buyer, customer-outcome, willingness-to-pay, remediation, or commercial validation.",
+    "No deployment, publication, contact, credential, spend, or real-data authority."
+  ],
+  "historical_custody_exception": {
+    "accepted_by": "Steven",
+    "accepted_date": "2026-10-31",
+    "scope": "historical R1 snapshot overwrite",
+    "historical_expected_sha256": "d503195ac519ba079195e60f7ed66b94077e4e0de5acc7ce0e2e20a0e5c3006c",
+    "accepted_current_sha256": "b107066344dfaa77eda403558f1950a8425b8108540c4adb52d793064e5c2c42",
+    "disposition": "preserved mismatch; historical snapshot was not rewritten or restored",
+    "relation_to_example": "separate from this synthetic run; limits broader custody claims"
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "file_count": 4,
+  "files": [
+    {
+      "bytes": 4406,
+      "path": "evidence/example.json",
+      "sha256": "0a34be110d047ed20af15348e92bad2f9d8dde38797aaf8dfce8466619fbdba8"
+    },
+    {
+      "bytes": 10467,
+      "path": "index.html",
+      "sha256": "259e12d237608bf3817a13d80c17471c0571fee7e0e985a41fa82fc839ce37c5"
+    },
+    {
+      "bytes": 1891,
+      "path": "release-readiness.json",
+      "sha256": "83fab5e16e8e7a67a4b1df7da81864bd8836823cd2771cb48b4fce945980c9b5"
+    },
+    {
+      "bytes": 5576,
+      "path": "styles.css",
+      "sha256": "3b90eddb0787eb9c518163b8717a7758c02a93070c483f767e62ade55a8fbde4"
+    }
+  ],
+  "schema_version": "changeproof-proof-page-static-manifest-v1"
+}
